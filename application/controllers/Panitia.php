@@ -29,7 +29,7 @@ class Panitia extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Login','ml');
 		$this->ml->cek_login();
-		$this->load->library('Guzzleme');
+		$this->load->library('GuzzleMe');
 		$this->myGuzzle = new GuzzleMe();
 		$this->token = $this->session->userdata('token');
 		$this->api_url = base_url().'/api/panitia_pemeriksa';
