@@ -1,6 +1,6 @@
 <?php 
 $CI =& get_instance();
-$CI->load->library('mylib');
+$CI->load->library('MyLib');
 ?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
