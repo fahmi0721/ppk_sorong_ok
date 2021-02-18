@@ -24,7 +24,7 @@ class Auth extends CI_Controller {
 	protected $message;
 	function __construct(){
 		parent::__construct();
-		$this->load->library('Guzzleme');
+		$this->load->library('GuzzleMe');
 		$this->myGuzzle = new GuzzleMe();
 		
 	}
