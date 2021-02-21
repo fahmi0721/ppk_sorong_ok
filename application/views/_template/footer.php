@@ -24,10 +24,13 @@
 <script src="<?= base_url('public/js/plugins/dataTables/datatables.min.js') ?>"></script>
 <script src="<?= base_url('public/js/plugins/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 
+<!-- Select2 -->
+<script src="<?= base_url('public/js/plugins/select2/select2.full.min.js') ?>"></script>
+
 <!-- Custom and plugin toastr -->
 <script src="<?= base_url('public/js/plugins/toastr/toastr.min.js') ?>"></script>
 <!-- Sweet alert -->
-    <script src="<?= base_url('public/js/plugins/sweetalert/sweetalert.min.js') ?>"></script>
+<script src="<?= base_url('public/js/plugins/sweetalert/sweetalert.min.js') ?>"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="<?= base_url('public/js/inspinia.js') ?>"></script>

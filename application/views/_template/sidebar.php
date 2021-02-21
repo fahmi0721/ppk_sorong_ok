@@ -29,9 +29,9 @@
                 <li <?php if($this->uri->segment(1) === "panitia"){ echo "class='active'"; } ?>><a href="<?= base_url('panitia/') ?>">Panitia Pemeriksa </a></li>
             </ul>
         </li>
-        <!-- <li>
-            <a href="minor.html"><i class="fa fa-th-large"></i> <span class="nav-label">Minor view</span> </a>
-        </li> -->
+        <li <?php if($this->uri->segment(1) === "pekerjaan_baru"){ echo "class='active'"; } ?>>
+            <a href="<?= base_url('pekerjaan_baru/') ?>"><i class="fa fa-plus-square"></i> <span class="nav-label">Buat Pekerjaan / HPS</span> </a>
+        </li>
     </ul>
 
 </div>
