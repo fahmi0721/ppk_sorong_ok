@@ -7,7 +7,7 @@ class MyLib {
         // parent::__construct();
         
     }
-	
+
 
     //====== FUNGSI TANGGAL INDONESIA ===///
 	public function tgl_indo($tgl){
@@ -15,6 +15,21 @@ class MyLib {
 		$bulan = $this->getBulan(substr($tgl,5,2));
 		$tahun = substr($tgl,0,4);
 		return $tanggal.' '.$bulan.' '.$tahun;		 
+	}
+
+	public function hari_indo($tgl) {
+		$tanggal = $tgl;
+		$day = date('D', strtotime($tanggal));
+		$dayList = array(
+			'Sun' => 'Minggu',
+			'Mon' => 'Senin',
+			'Tue' => 'Selasa',
+			'Wed' => 'Rabu',
+			'Thu' => 'Kamis',
+			'Fri' => 'Jumat',
+			'Sat' => 'Sabtu'
+		);
+		return $dayList[$day];
 	}
 
 	public function getBulan($bln){
