@@ -32,6 +32,9 @@
         <li <?php if($this->uri->segment(1) === "pekerjaan_baru"){ echo "class='active'"; } ?>>
             <a href="<?= base_url('pekerjaan_baru/') ?>"><i class="fa fa-plus-square"></i> <span class="nav-label">Buat Pekerjaan / HPS</span> </a>
         </li>
+        <li <?php if($this->uri->segment(1) === "data_pekerjaan"){ echo "class='active'"; } ?>>
+            <a href="<?= base_url('data_pekerjaan/') ?>"><i class="fa fa-suitcase"></i> <span class="nav-label">Data Pekerjaan / HPS</span> </a>
+        </li>
     </ul>
 
 </div>
