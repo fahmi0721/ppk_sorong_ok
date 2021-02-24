@@ -1,7 +1,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-8">
-        <h2>Data Pekrjaan Baru / Harga Perkiraan Sendiri</h2>
+        <h2>Tambah Pekrjaan Baru / Harga Perkiraan Sendiri</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="<?= base_url(); ?>">Dashboard</a>
