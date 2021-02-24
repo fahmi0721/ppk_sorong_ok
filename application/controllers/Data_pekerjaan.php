@@ -101,6 +101,7 @@ class Data_pekerjaan extends CI_Controller {
 	public function edit()
 	{	
 		if($this->uri->segment(3)!= ""){
+			
 			$data['id'] = $this->uri->segment(3);
 			$param= array(
 					"query" => $data,
