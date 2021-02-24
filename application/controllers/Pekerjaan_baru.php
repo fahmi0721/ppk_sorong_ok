@@ -74,66 +74,8 @@ class Pekerjaan_baru extends CI_Controller {
 		echo $response;
 	}
 	
-	public function coba(){
-	$param_anggaran= array(
-		"headers" => array("Authorization" => $this->token)
-	);
-	$response = json_decode($this->myGuzzle->request_get($this->api_url_anggaran,$param_anggaran),true);
-		foreach($response['data'] as $key => $item){
-			echo "<pre>";
-			print_r($item);
-		}
-	}
+	
 
-	public function edit()
-	{	
-		if($this->uri->segment(3)!= ""){
-			$data['id'] = $this->uri->segment(3);
-			$param= array(
-					"query" => $data,
-					"headers" => array("Authorization" => $this->token)
-			);
-			$response = json_decode($this->myGuzzle->request_get($this->api_url,$param),true);
-			if($response['status'] === true){
-				$iData = $response['data'][0];
-				$this->load->view('_template/header');
-				$this->load->view('_template/sidebar');
-				$this->load->view('anggaran/form_edit',$iData);
-				$this->load->view('_template/footer');
-			}else{
-				echo $response;
-			}
-		}else{
-			redirect('users');
-		}
-		
-	}
-
-	public function update()
-	{	
-		$data['Id'] = $this->input->post('Id');
-		$data['Nomor'] = $this->input->post('Nomor');
-		$data['Nama'] = $this->input->post('Nama');
-		$data['Tahun'] = $this->input->post('Tahun');
-		$data['Tanggal'] = $this->input->post('Tanggal');
-		$param= array(
-				"form_params" => $data,
-				"headers" => array("Authorization" => $this->token)
-		);
-		$response = $this->myGuzzle->request_put($this->api_url,$param);
-		echo $response;
-	}
-
-	public function delete()
-	{	
-		$data['Id'] = $this->input->post('Id');
-		$param= array(
-				"form_params" => $data,
-				"headers" => array("Authorization" => $this->token)
-		);
-		$response = $this->myGuzzle->request_delete($this->api_url,$param);
-		echo $response;
-	}
 
 	
 }

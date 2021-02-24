@@ -29,6 +29,8 @@
     <!-- Datepicker -->
     <script src="<?= base_url('public/js/plugins/datapicker/bootstrap-datepicker.js') ?>"></script>
 
+    <!-- Select2 -->
+    <script src="<?= base_url('public/js/plugins/select2/select2.full.min.js') ?>"></script>
    
 
 </head>

@@ -6,6 +6,7 @@ class M_Hps extends CI_Model {
             if($id != null){
                 $this->db->where('Id', $id);
             }
+            $this->db->order_by('Id', "DESC");
             return $this->db->get("ppk_hps")->result_array();
         }
 
