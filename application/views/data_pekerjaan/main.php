@@ -47,6 +47,7 @@ $CI->load->library('MyLib');
                         <?php $no=1; foreach ($data as $item): 
                             $Anggran = json_decode($item['DataAnggaran'],true);
                             $Pejabat = json_decode($item['DataPejabat'],true);
+                            
                         ?>
                         <tr>
                             <td class='text-center'><?= $no++ ?></td>
