@@ -136,4 +136,49 @@
         });
     }
 
+    function ShowConfirmModulLain(Id,Modul){
+        swal({
+                title: "Anda yakin menghapus data ini?",
+                text: "Data ini akan dihapus secara permanen!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya, Hapus!",
+                closeOnConfirm: false
+            }, function () {
+                if(Modul === "penunjukan_penyedia"){
+                    SubmitDeletePenunjukanPenyedia(Id);
+                }
+        });
+    }
+
+    /**
+    fungsi hapus penunnukan penyedia
+     */
+
+    function SubmitDeletePenunjukanPenyedia(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('penunjukan_penyedia/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Penunjukan Penyedia/Vendor",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Penunjukan Penyedia/Vendor', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+
 </script>

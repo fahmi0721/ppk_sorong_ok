@@ -8,6 +8,8 @@ class MyLib {
         
     }
 
+	
+
 
     //====== FUNGSI TANGGAL INDONESIA ===///
 	public function tgl_indo($tgl){
@@ -30,6 +32,36 @@ class MyLib {
 			'Sat' => 'Sabtu'
 		);
 		return $dayList[$day];
+	}
+
+	public function rupiah1($str,$prefix=null){
+		$str = number_format($str,0,',','.');
+		return $prefix." " .$str;
+	}
+
+	public function Terbilang($anka){
+		$x = abs($anka);
+		$angka = array('','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas');
+		$tep = " ";
+		if($x < 12){
+			$tep = " ". $angka[$x];
+		} else if($x < 20){
+			$tep = $this->Terbilang($x - 10). " Belas";
+		} else if($x < 100){
+			$tep = $this->Terbilang($x / 10). " Puluh". $this->Terbilang($x % 10);	
+		} else if($x < 200){
+			$tep = " Seratus". $this->Terbilang($x - 100);	
+		} else if($x < 1000){
+			$tep = $this->Terbilang($x / 100). " Ratus". $this->Terbilang($x % 100);	
+		} else if($x < 2000){
+			$tep = " Seribu". $this->Terbilang($x - 100);	
+		} else if($x < 1000000){
+			$tep = $this->Terbilang($x / 1000). " Ribu". $this->Terbilang($x % 1000);	
+		} else if($x < 1000000000){
+			$tep = $this->Terbilang($x / 1000000). " Juta". $this->Terbilang($x % 1000000);	
+		}
+
+		return $tep;
 	}
 
 	public function getBulan($bln){

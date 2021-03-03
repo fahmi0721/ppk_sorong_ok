@@ -152,7 +152,7 @@ class Penunjukan_penyedia extends REST_Controller {
         if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
             try {
                 $Id = $this->put('Id');
-                 $res['NoSurat'] = $this->put('NoSurat');
+                $res['NoSurat'] = $this->put('NoSurat');
                 $res['NoSuratHps'] = $this->put('NoSuratHps');
                 $res['DataHps'] = $this->m->getDataHps($this->put('NoSuratHps'));
                 $res['TglPenawaran'] = $this->put('TglPenawaran');
