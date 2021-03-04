@@ -105,7 +105,12 @@ class MyLib {
 	    }
 	}
 
-    
+	public function SelisihWaktu($TglDari,$TglSampai){
+		$tgl1 = new DateTime($TglDari);
+		$tgl2 = new DateTime($TglSampai);
+		$d = $tgl2->diff($tgl1)->days+1;
+		return $d;
+	}
 
 
 }

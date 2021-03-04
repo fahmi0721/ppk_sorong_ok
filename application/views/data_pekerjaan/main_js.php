@@ -148,6 +148,8 @@
             }, function () {
                 if(Modul === "penunjukan_penyedia"){
                     SubmitDeletePenunjukanPenyedia(Id);
+                }else if(Modul === "spk"){
+                    SubmitDeleteSpk(Id);
                 }
         });
     }
@@ -169,6 +171,35 @@
                     FormMessage("Modul Dokumen Penunjukan Penyedia/Vendor",response['message'],'error');
                 }else{
                     FormMessage('Modul Dokumen Penunjukan Penyedia/Vendor', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+
+    /**
+    fungsi hapus Spk
+     */
+
+    function SubmitDeleteSpk(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('spk/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Surat Perintah Kerja",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Surat Perintah Kerja', response['message']);
                     setTimeout(function(){
                         window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
                     },1300)

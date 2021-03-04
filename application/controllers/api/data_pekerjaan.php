@@ -20,7 +20,7 @@ use Restserver\Libraries\REST_Controller;
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class data_pekerjaan extends REST_Controller {
+class Data_pekerjaan extends REST_Controller {
     private $UserId;
     function __construct(){
         parent::__construct();
@@ -40,7 +40,7 @@ class data_pekerjaan extends REST_Controller {
          * @return: data Penunjukan Penyedia
          */
         $is_valid_token = $this->authorization_token->validateToken();
-        // if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
             try {
                 $NoSuratHps = $this->post('NoSuratHps');
                 // echo $NoSuratHps; exit;
@@ -81,9 +81,101 @@ class data_pekerjaan extends REST_Controller {
                 $this->response($e->getMessage(), REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
             }
             
-        // }else{
-        //     $this->response($is_valid_token , REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
-        // }
+        }else{
+            $this->response($is_valid_token , REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+        
+        
+    }
+
+    public function spk_post(){
+        /**
+         * Get Penunjukan Penyedia
+         * @param: id
+         * @return: data Penunjukan Penyedia
+         */
+        $is_valid_token = $this->authorization_token->validateToken();
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
+            try {
+                $NoSuratPP = $this->post('NoSuratPP');
+                // echo $NoSuratPP; exit;
+                if(!empty($NoSuratPP) && $NoSuratPP != NULL){
+                    $data = $this->m->loadDataSpk($NoSuratPP);
+                    if(!empty($data)){
+                        $message = [
+                            "status" => TRUE,
+                            "data" => $data['data'],
+                            "row" => $data['row'],
+                        ];
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    }else{
+                        $message = [
+                            "status" => FALSE,
+                            "message" => "data empty in table"
+                        ];
+                        $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    }
+                }else{
+                    $message = [
+                        "status" => FALSE,
+                        "message" => "data empty in table"
+                    ];
+                    $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                }
+                
+            } catch (\Exception $e) {
+                $this->response($e->getMessage(), REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+            }
+            
+        }else{
+            $this->response($is_valid_token , REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+        
+        
+    }
+
+    public function pphp_post(){
+        /**
+         * Get Penunjukan Penyedia
+         * @param: id
+         * @return: data Penunjukan Penyedia
+         */
+        $is_valid_token = $this->authorization_token->validateToken();
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
+            try {
+                $NoSuratHps = $this->post('NoSuratHps');
+                // echo $NoSuratHps; exit;
+                if(!empty($NoSuratHps) && $NoSuratHps != NULL){
+                    $data = $this->m->loadDataPphp($NoSuratHps);
+                    if(!empty($data)){
+                        $message = [
+                            "status" => TRUE,
+                            "data" => $data['data'],
+                            "row" => $data['row'],
+                        ];
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    }else{
+                        $message = [
+                            "status" => FALSE,
+                            "message" => "data empty in table"
+                        ];
+                        $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    }
+                }else{
+                    $message = [
+                        "status" => FALSE,
+                        "message" => "data empty in table"
+                    ];
+                    $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                }
+                
+            } catch (\Exception $e) {
+                $this->response($e->getMessage(), REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+            }
+            
+        }else{
+            $this->response($is_valid_token , REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
         
         
     }

@@ -96,26 +96,63 @@ $CI->load->library('MyLib');
 
                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon lazur-bg">
-                                    <i class="fa fa-coffee"></i>
+                                    <i class="fa fa-file-text"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>Coffee Break</h2>
-                                    <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
-                                    <a href="#" class="btn btn-sm btn-info">Read more</a>
-                                    <span class="vertical-date"> Yesterday <br/><small>Dec 23</small></span>
+                                    <h2>Dokumen Surat Perintah Kerja (SPK)</h2>
+                                    <?php if($spk['row'] > 0){ ?>
+                                        <p> Waktu Pelaksanaan Pekerjaan:  <b><?= $spk['data']['WaktuKerja']; ?> </b>  hari kerja dari tanggal <?= $CI->mylib->tgl_indo($spk['data']['TglDari']) ?> S/D <?= $CI->mylib->tgl_indo($spk['data']['TglSampai']) ?></p>
+                                        <small>No SPK : <b><?= $spk['data']['NoSpk'] ?></b></small><br>
+                                        <small> Tanggal SPK: <b><?= $CI->mylib->tgl_indo($spk['data']['Tgl']) ?></b></small><br>
+                                        
+                                        <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $spk['data']['Id']; ?>','spk')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                        <a href="<?= base_url('spk/edit/'.$spk['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                        <a href="<?= base_url('cetak_data/spk/'.$spk['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                        <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                        <span class="vertical-date">
+                                            <?= $CI->mylib->hari_indo($spk['data']['Tgl']) ?> <br/>
+                                        <small><?= $CI->mylib->tgl_indo($spk['data']['Tgl']) ?></small>
+                                    </span>
+                                    <?php }else{ ?>
+                                        <p>Dokumen ini belum dibuat</p>
+                                        <a href="<?= base_url('spk/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                        <span class="vertical-date">
+                                            - <br/>
+                                            <small>-</small>
+                                        </span>
+                                    <?php } ?>
                                 </div>
                             </div>
 
                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon yellow-bg">
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-file-text"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>Phone with Jeronimo</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-                                    <span class="vertical-date">Yesterday <br/><small>Dec 23</small></span>
+                                <h2>Dokumen Permintaan Pemeriksaan Hasil Pengadaan Barang/Jasa</h2>
+                                    <?php if($pphp['row'] > 0){ ?>
+                                        <p>Keapda Yth. Panitia Penerima Hasil Pekerjaan pada Politeknik Pelayaran Sorong</p>
+                                        <small>No Surat : <b><?= $pphp['data']['NoSurat'] ?></b></small><br>
+                                        <small> Tanggal Surat: <b><?= $CI->mylib->tgl_indo($pphp['data']['Tgl']) ?></b></small><br>
+                                        
+                                        <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $pphp['data']['Id']; ?>','pphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                        <a href="<?= base_url('spk/edit/'.$pphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                        <a href="<?= base_url('cetak_data/spk/'.$pphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                        <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                        <span class="vertical-date">
+                                            <?= $CI->mylib->hari_indo($pphp['data']['Tgl']) ?> <br/>
+                                        <small><?= $CI->mylib->tgl_indo($pphp['data']['Tgl']) ?></small>
+                                    </span>
+                                    <?php }else{ ?>
+                                        <p>Dokumen ini belum dibuat</p>
+                                        <a href="<?= base_url('pphp/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                        <span class="vertical-date">
+                                            - <br/>
+                                            <small>-</small>
+                                        </span>
+                                    <?php } ?>
                                 </div>
                             </div>
 

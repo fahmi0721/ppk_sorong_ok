@@ -44,6 +44,8 @@ class Data_pekerjaan extends CI_Controller {
 	protected $api_url_anggaran;
 	protected $api_url_pejabat;
 	protected $api_url_penunjukan_peyedia;
+	protected $api_url_spk;
+	protected $api_url_pphp;
 	protected $result;
 
 	function __construct(){
@@ -56,6 +58,8 @@ class Data_pekerjaan extends CI_Controller {
 		$this->api_url_anggaran = base_url().'api/anggaran';
 		$this->api_url_pejabat = base_url().'api/pejabat';
 		$this->api_url_penunjukan_peyedia = base_url().'api/data_pekerjaan/penunjukan_penuedia';
+		$this->api_url_spk = base_url().'api/data_pekerjaan/spk';
+		$this->api_url_pphp = base_url().'api/data_pekerjaan/pphp';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -99,6 +103,10 @@ class Data_pekerjaan extends CI_Controller {
 	public function progres()
 	{	
 		if($this->uri->segment(3) != ""){
+			/** 
+			 * getData HPS
+			 * 
+			*/
 			$data['Id'] = $this->uri->segment(3);
 			$param= array(
 					"query" => $data,
@@ -106,15 +114,46 @@ class Data_pekerjaan extends CI_Controller {
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url,$param),true);
 			$data['hps'] = $response['data'][0];
+
+			/**
+			 * getData Penunjukan Penyedia/Vendor
+			 */
 			$datas['NoSuratHps'] = $data['hps']['NoSurat'];
 			$param_penunjukan_peyedia= array(
 					"form_params" => $datas,
 					"headers" => array("Authorization" => $this->token)
 			);
 			$response_penunjukan_peyedia = json_decode($this->myGuzzle->request_post($this->api_url_penunjukan_peyedia,$param_penunjukan_peyedia),true);
-			unset($datas['penunjukan_peyedia']);
+			unset($datas['NoSuratHps']);
 			$data['penunjukan_peyedia'] = $response_penunjukan_peyedia;
-			// print_r($data); exit;
+
+			/**
+			 * getData SPK
+			 * 
+			 */
+			$datas['NoSuratPP'] = $response_penunjukan_peyedia['data']['NoSurat'];
+			$param_spk= array(
+					"form_params" => $datas,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response_spk = json_decode($this->myGuzzle->request_post($this->api_url_spk,$param_spk),true);
+			unset($datas['NoSuratPP']);
+			$data['spk'] = $response_spk;
+
+			/**
+			 * getData PPHP
+			 * 
+			 */
+			$datas['NoSuratHps'] = $data['hps']['NoSurat'];
+			$param_pphp= array(
+					"form_params" => $datas,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response_pphp = json_decode($this->myGuzzle->request_post($this->api_url_pphp,$param_pphp),true);
+			unset($datas['NoSuratHps']);
+			$data['pphp'] = $response_pphp;
+			// print_r($response_pphp); exit;
+			
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
 			$this->load->view('data_pekerjaan/progres',$data);
