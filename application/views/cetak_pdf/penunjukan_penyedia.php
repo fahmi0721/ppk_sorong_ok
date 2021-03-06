@@ -111,13 +111,16 @@ $CI->load->library('MyLib');
             <td class='text-top tinggi-ttd' colspan='3'></td>
             <td width='20%' class='text-top text-center'></td>
         </tr>
+        <?php 
+                $Pejabat = json_decode($data['DataPejabat'],true);
+            ?>
         <tr>
             <td class='text-top' colspan='3'>&nbsp;</td>
-            <td width='20%' class='text-top text-center'><u>SANDY WAHYU PURNOMO</u></td>
+            <td width='20%' class='text-top text-center'><u><?= $Pejabat['Nama'] ?></u></td>
         </tr>
         <tr>
             <td class='text-top' colspan='3'>&nbsp;</td>
-            <td width='20%' class='text-top text-center'>NIP. 19900318 201503 1 006</td>
+            <td width='20%' class='text-top text-center'>NIP. <?= $Pejabat['Nip'] ?></td>
         </tr>
         
     </table>

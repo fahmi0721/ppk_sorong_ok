@@ -81,7 +81,7 @@ class Pejabat extends CI_Controller {
 	public function edit()
 	{	
 		if($this->uri->segment(3)!= ""){
-			$data['id'] = $this->uri->segment(3);
+			$data['Id'] = $this->uri->segment(3);
 			$param= array(
 					"query" => $data,
 					"headers" => array("Authorization" => $this->token)

@@ -111,7 +111,10 @@ $CI->load->library('MyLib');
             <td></td>
         </tr>
         <tr>
-            <td><u>SANDY WAHYU PURNOMO</u><br>NIP. 19900318 201503 1 006</td>
+            <?php 
+                $Pejabat = json_decode($hps['DataPejabat'],true);
+            ?>
+            <td><u><?= $Pejabat['Nama'] ?></u><br>NIP. <?= $Pejabat['Nip'] ?></td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..............................................</td>
         </tr>
     </table>
