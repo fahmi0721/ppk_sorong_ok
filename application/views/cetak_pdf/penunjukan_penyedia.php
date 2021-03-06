@@ -90,7 +90,7 @@ $CI->load->library('MyLib');
             <td class='text-top tinggi-spasi' colspan='4'></td>
         </tr>
         <tr>
-            <td class='text-top text-justify' colspan='4'>Surat Perjanjian. Kegagalan Saudara untuk menerima penunjukan ini yang disusun berdasarkan evaluasi terhadap penawaran Saudara akan dikenakan sanksi sesuai dengan ketentuan yang tercantum dalam Peraturan Presiden No.16 Tahun 2018 tentang Pengadaan Barang/Jasa Pemerintah.</td>
+            <td class='text-top text-justify' colspan='4'>Sebagai tindak lanjut dari Surat Penunjukan Penyedia Barang/Jasa (SPPBJ) ini Saudara diharuskan untuk menyerahkan Jaminan Pelaksanaan dan menandatangani Surat Perjanjian. Kegagalan Saudara untuk menerima penunjukan ini yang disusun berdasarkan evaluasi terhadap penawaran Saudara akan dikenakan sanksi sesuai dengan ketentuan yang tercantum dalam Peraturan Presiden No.16 Tahun 2018 tentang Pengadaan Barang/Jasa Pemerintah.</td>
         </tr>
         <tr>
             <td class='text-top tinggi-spasi' colspan='4'></td>
