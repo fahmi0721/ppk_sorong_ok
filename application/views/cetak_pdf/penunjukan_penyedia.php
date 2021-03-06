@@ -84,7 +84,7 @@ $CI->load->library('MyLib');
             <td class='text-top tinggi-spasi' colspan='4'></td>
         </tr>
         <tr>
-            <td class='text-top text-justify' colspan='4'>Dengan ini kami beritahukan berdasarkan penawaran Saudara tanggal <?= $CI->mylib->tgl_indo($data['TglPenawaran']) ?> perihal <?= $hps['Pekerjaan']; ?> dengan penawaran setelah negosiasi adalah sebesar Rp. <?= $CI->mylib->rupiah1($data['HargaSepakat']) ?>. ,- <b>(<?= $CI->mylib->Terbilang($data['HargaSepakat']) ?>)</b> kami nyatakan diterima/disetujui </td>
+            <td class='text-top text-justify' colspan='4'>Dengan ini kami beritahukan berdasarkan penawaran Saudara tanggal <?= $CI->mylib->tgl_indo($data['TglPenawaran']) ?> perihal <?= $hps['Pekerjaan']; ?> dengan penawaran setelah negosiasi adalah sebesar Rp. <?= $CI->mylib->rupiah1($data['HargaSepakat']) ?>. ,- <b>(<?= $CI->mylib->Terbilang($data['HargaSepakat']) ?>)</b> kami nyatakan diterima/disetujui.</td>
         </tr>
         <tr>
             <td class='text-top tinggi-spasi' colspan='4'></td>

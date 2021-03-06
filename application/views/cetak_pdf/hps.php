@@ -75,7 +75,7 @@ $CI->load->library('MyLib');
     <table width='100%' border='0' celpadding=0 cellspacing=0>
         <tr>
             <td width='20px' valign='top'>1. </td>
-            <td valign='top' align='justify'>Pada hari ini, <b><?= $CI->mylib->hari_indo($hps['Tgl']) ?></b> , bertempat di ruang rapat kantor Politeknik Pelayaran Sorong, saya yang bertanda tangan di bawah ini Pejabat Pembuat Komitmen Pada Politeknik Pelayaran Sorong Tahun Anggaran <?= $Dana['Tahun'] ?>, telah menyusun pembuatan Harga Perkiraan Sendiri (HPS) pekerjaan <span style='text-transform: lowercase;'><?= $hps['Pekerjaan'] ?></span> yang dibiayai dari anggaran DIPA Politeknik Pelayaran Sorong Tahun Anggaran <?= $Dana['Tahun'] ?> Nomor <?=  $Dana['Nama']." Tahun Anggran ".$Dana['Tahun']." Nomor ".$Dana['Nomor']." Tanggal ".$CI->mylib->tgl_indo($Dana['Tanggal']); ?>
+            <td valign='top' align='justify'>Pada hari ini, <b><?= $CI->mylib->hari_indo($hps['Tgl']) ?></b> , bertempat di ruang rapat kantor Politeknik Pelayaran Sorong, saya yang bertanda tangan di bawah ini Pejabat Pembuat Komitmen Pada Politeknik Pelayaran Sorong Tahun Anggaran <?= $Dana['Tahun'] ?>, telah menyusun pembuatan Harga Perkiraan Sendiri (HPS) pekerjaan <span style='text-transform: lowercase;'><?= $hps['Pekerjaan'] ?></span> yang dibiayai dari anggaran DIPA Politeknik Pelayaran Sorong Tahun Anggaran <?= $Dana['Tahun'] ?> Nomor <?=  $Dana['Nama']." Tahun Anggran ".$Dana['Tahun']." Nomor ".$Dana['Nomor']." Tanggal ".$CI->mylib->tgl_indo($Dana['Tanggal']); ?>.
             <br>
             <br>
             </td>
