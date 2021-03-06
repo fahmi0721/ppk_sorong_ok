@@ -150,7 +150,17 @@
                     SubmitDeletePenunjukanPenyedia(Id);
                 }else if(Modul === "spk"){
                     SubmitDeleteSpk(Id);
+                }else if(Modul === "pphp"){
+                    SubmitDeletePphp(Id);
+                }else if(Modul === "baphp"){
+                    SubmitDeleteBaphp(Id);
+                }else if(Modul === "bastb"){
+                    SubmitDeleteBastb(Id);
+                }else if(Modul === "ba_bayar"){
+                    SubmitDeleteBa_bayar(Id);
                 }
+                
+                
         });
     }
 
@@ -185,7 +195,7 @@
 
     /**
     fungsi hapus Spk
-     */
+    */
 
     function SubmitDeleteSpk(Id){
         iData = "Id="+Id;
@@ -211,5 +221,116 @@
         })
     }
 
+    /**
+    fungsi hapus Pphp
+    */
+
+    function SubmitDeletePphp(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('pphp/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Permintaan Pemeriksan Barang/Jasa",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Permintaan Pemeriksan Barang/Jasa', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+    /**
+    fungsi hapus Baphp
+    */
+
+    function SubmitDeleteBaphp(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('baphp/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Berita Acara Pemeriksaan Hasil Pekerjaan",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Berita Acara Pemeriksaan Hasil Pekerjaan', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+    /**
+    fungsi hapus Bastb
+    */
+
+    function SubmitDeleteBastb(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('bastb/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Dokumen Berita Acara Serah Terima Barang",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Dokumen Berita Acara Serah Terima Barang', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+    /**
+    fungsi hapus BaBayar
+    */
+
+    function SubmitDeleteBa_bayar(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('ba_bayar/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Berita Acara Pembayaran",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Berita Acara Pembayaran', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
 
 </script>

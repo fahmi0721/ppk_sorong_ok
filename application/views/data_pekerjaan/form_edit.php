@@ -95,4 +95,6 @@
     </div>
 </div>
 
-<?php $this->load->view('data_pekerjaan/main_js') ?>
+<?php 
+$data['hps'] = $item;
+$this->load->view('data_pekerjaan/main_js',$data) ?>

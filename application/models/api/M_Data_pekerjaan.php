@@ -14,8 +14,8 @@ class M_Data_pekerjaan extends CI_Model {
             return $result;
         }
 
-        function loadDataSpk($NoSuratPP){
-            $this->db->where('NoSuratPP', $NoSuratPP);
+        function loadDataSpk($NoSuratHps){
+            $this->db->where('NoSuratHps', $NoSuratHps);
             $query = $this->db->get("ppk_spk");
             $row = $query->num_rows();
             $data = $query->row();
@@ -38,6 +38,42 @@ class M_Data_pekerjaan extends CI_Model {
             return $result;
         }
 
+        function loadDataBaphp($NoSuratHps){
+            $this->db->where('NoSuratHps', $NoSuratHps);
+            $query = $this->db->get("ppk_baphp");
+            $row = $query->num_rows();
+            $data = $query->row();
+            $result = [
+                "row" => $row,
+                "data" => $data
+            ];
+            return $result;
+        }
+
+        function loadDataBastb($NoSuratHps){
+            $this->db->where('NoSuratHps', $NoSuratHps);
+            $query = $this->db->get("ppk_bastb");
+            $row = $query->num_rows();
+            $data = $query->row();
+            $result = [
+                "row" => $row,
+                "data" => $data
+            ];
+            return $result;
+        }
+
+
+        function loadDataBa_bayar($NoSuratHps){
+            $this->db->where('NoSuratHps', $NoSuratHps);
+            $query = $this->db->get("ppk_babayar");
+            $row = $query->num_rows();
+            $data = $query->row();
+            $result = [
+                "row" => $row,
+                "data" => $data
+            ];
+            return $result;
+        }
         
 
 
