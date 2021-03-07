@@ -47,7 +47,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $no=1; foreach ($data as $item): ?>
+                        <?php 
+                            if(!empty($data)){
+                            $no=1; foreach ($data as $item): 
+                        ?>
                         <tr>
                             <td class='text-center'><?= $no++ ?></td>
                             <td><?= $item['Nama']; ?><br> <small><b>Kode :</b><?= $item['Kode']; ?></small></td>
@@ -62,7 +65,11 @@
                                 </div>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; 
+                        }else{
+                        ?>
+                        <tr><td colspan='7' class='text-center'>Data Vendor masih kosong</td></tr>
+                        <?php } ?>
                         
                         </tbody>
                     </table>

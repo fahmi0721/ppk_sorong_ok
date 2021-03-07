@@ -115,7 +115,11 @@ $CI->load->library('MyLib');
                                 </span>
                                 <?php }else{ ?>
                                     <p>Dokumen ini belum dibuat</p>
-                                    <a href="<?= base_url('spk/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php if($penunjukan_peyedia['row'] > 0){ ?>
+                                    <a  href="<?= base_url('spk/tambah/'.$hps['Id']) ?>"  class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen Penunjukan Penyedia Terlebih dahulu</small>
+                                    <?php } ?>
                                     <span class="vertical-date">
                                         - <br/>
                                         <small>-</small>
@@ -146,7 +150,11 @@ $CI->load->library('MyLib');
                                 </span>
                                 <?php }else{ ?>
                                     <p>Dokumen ini belum dibuat</p>
+                                    <?php if($spk['row'] > 0){ ?>
                                     <a href="<?= base_url('pphp/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen SPK Terlebih dahulu</small>
+                                    <?php } ?>
                                     <span class="vertical-date">
                                         - <br/>
                                         <small>-</small>
@@ -179,7 +187,11 @@ $CI->load->library('MyLib');
                                 </span>
                                 <?php }else{ ?>
                                     <p>Dokumen ini belum dibuat</p>
+                                    <?php if($pphp['row'] > 0){ ?>
                                     <a href="<?= base_url('baphp/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen Permintaan Pemeriksaan Hasil Pengadaan Barang/Jasa Terlebih dahulu</small>
+                                    <?php } ?>
                                     <span class="vertical-date">
                                         - <br/>
                                         <small>-</small>
@@ -209,7 +221,11 @@ $CI->load->library('MyLib');
                                 </span>
                                 <?php }else{ ?>
                                     <p>Dokumen ini belum dibuat</p>
+                                    <?php if($baphp['row'] > 0){ ?>
                                     <a href="<?= base_url('bastb/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen Berita Acara Pemeriksaan Hasil Pekerjaan</small>
+                                    <?php } ?>
                                     <span class="vertical-date">
                                         - <br/>
                                         <small>-</small>
@@ -239,7 +255,11 @@ $CI->load->library('MyLib');
                                 </span>
                                 <?php }else{ ?>
                                     <p>Dokumen ini belum dibuat</p>
+                                    <?php if($bastb['row'] > 0){ ?>
                                     <a href="<?= base_url('ba_bayar/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen Berita Acara Serah Terima Barang</small>
+                                    <?php } ?>
                                     <span class="vertical-date">
                                         - <br/>
                                         <small>-</small>

@@ -50,7 +50,9 @@ $CI->load->library('MyLib');
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $no=1; foreach ($data as $item): ?>
+                        <?php 
+                        if(!empty($data)){
+                        $no=1; foreach ($data as $item): ?>
                         <tr>
                             <td class='text-center'><?= $no++ ?></td>
                             <td><?= $item['NoSk']; ?><br> <small><b>Kode :</b><?= $item['Kode']; ?></small><br> <small><b>Perihal :</b><?= $item['Perihal']; ?></small></td>
@@ -79,7 +81,12 @@ $CI->load->library('MyLib');
                                 </div>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; 
+                        }else{
+                        ?>
+                            <tr><td colspan='7' class='text-center'>Data Panitia Pemeriksa Masih Kosong</td></tr>
+
+                        <?php } ?>
                         
                         </tbody>
                     </table>

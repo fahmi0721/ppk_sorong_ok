@@ -50,7 +50,11 @@ class Anggaran extends CI_Controller {
 			$this->load->view('anggaran/main',$this->result);
 			$this->load->view('_template/footer');
 		}else{
-			redirect('auth');
+			$this->result['data'] = "";
+			$this->load->view('_template/header');
+			$this->load->view('_template/sidebar');
+			$this->load->view('anggaran/main',$this->result);
+			$this->load->view('_template/footer');
 		}
 	}
 

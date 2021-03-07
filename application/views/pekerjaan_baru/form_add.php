@@ -53,10 +53,18 @@
                                 <label>Anggaran yang dipakai</label> 
                                 <select class="select2_demo_3 form-control" name='KodeAnggaran' id='KodeAnggaran'>
                                 <option value=""></option>
-                                    <?php foreach($anggaran as $item): ?>
+                                    <?php 
+                                    if(!empty($anggaran)){
+                                    foreach($anggaran as $item): 
+                                    ?>
                                         <option value="<?= $item['Kode'] ?>"><?= $item['Nomor']; ?> [<?= $item['Nama'] ?>]</option>
-                                    <?php endforeach ?>
+                                    <?php endforeach;
+                                    }else{
+                                    ?>
+                                        <option value="">Belum Ada Data Anggaran</option>
+                                    <?php } ?>
                                 </select>
+                                <?php if(empty($anggaran)){ ?><small class='text  text-danger'>Angggaran Belum Ada</small> <?php } ?>
                             </div>
 
                             <div class="form-group" id='data_1'>
@@ -70,10 +78,17 @@
                                 <label>Pejabat yang bertanda tangan</label> 
                                 <select class="select2_demo_2 form-control" name='KodePejabat' id='KodePejabat'>
                                 <option value=""></option>
-                                    <?php foreach($pejabat as $item): ?>
+                                    <?php 
+                                    if(!empty($pejabat)){
+                                    foreach($pejabat as $item): ?>
                                         <option value="<?= $item['Kode'] ?>"><?= $item['Nama']; ?> [<?= $item['Nip'] ?>]</option>
-                                    <?php endforeach ?>
+                                    <?php endforeach; 
+                                    }else{
+                                    ?>
+                                        <option value="">Belum ada data pejabat</option>
+                                    <?php } ?>
                                 </select>
+                                <?php if(empty($pejabat)){ ?><small class='text  text-danger'>Belum ada data pejabat</small> <?php } ?>
                             </div>
 
                             <div>

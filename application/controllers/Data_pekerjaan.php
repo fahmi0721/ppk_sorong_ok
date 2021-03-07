@@ -84,7 +84,7 @@ class Data_pekerjaan extends CI_Controller {
 			$this->load->view('data_pekerjaan/main',$this->result);
 			$this->load->view('_template/footer');
 		}else{
-			redirect('auth');
+			redirect('pekerjaan_baru');
 		}
 	}
 

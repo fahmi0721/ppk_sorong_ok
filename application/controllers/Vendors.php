@@ -50,7 +50,11 @@ class Vendors extends CI_Controller {
 			$this->load->view('vendor/main',$this->result);
 			$this->load->view('_template/footer');
 		}else{
-			redirect('auth');
+			$this->result['data'] = "";
+			$this->load->view('_template/header');
+			$this->load->view('_template/sidebar');
+			$this->load->view('vendor/main',$this->result);
+			$this->load->view('_template/footer');
 		}
 	}
 

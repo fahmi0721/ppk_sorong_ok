@@ -47,14 +47,18 @@ class Pekerjaan_baru extends CI_Controller {
 		$param= array(
 				"headers" => array("Authorization" => $this->token)
 		);
-		$response_anggaran = json_decode($this->myGuzzle->request_get($this->api_url_anggaran,$param),true);
-		$response_pejabat = json_decode($this->myGuzzle->request_get($this->api_url_pejabat,$param),true);
-		$data['anggaran'] = $response_anggaran['data'];
-		$data['pejabat'] = $response_pejabat['data'];
-		$this->load->view('_template/header');
-		$this->load->view('_template/sidebar');
-		$this->load->view('pekerjaan_baru/form_add',$data);
-		$this->load->view('_template/footer');
+		try{
+			$response_anggaran = json_decode($this->myGuzzle->request_get($this->api_url_anggaran,$param),true);
+			$response_pejabat = json_decode($this->myGuzzle->request_get($this->api_url_pejabat,$param),true);
+			$data['anggaran'] = in_array("data", $response_anggaran) ? $response_anggaran['data'] : "";
+			$data['pejabat'] = in_array("data", $response_pejabat) ? $response_pejabat['data'] : "";
+			$this->load->view('_template/header');
+			$this->load->view('_template/sidebar');
+			$this->load->view('pekerjaan_baru/form_add',$data);
+			$this->load->view('_template/footer');
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}
 	}
 
 	

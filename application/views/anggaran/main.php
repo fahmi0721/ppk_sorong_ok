@@ -49,7 +49,10 @@ $CI->load->library('MyLib');
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $no=1; foreach ($data as $item): ?>
+                        <?php 
+                            if(!empty($data)){
+                            $no=1; foreach ($data as $item): 
+                        ?>
                         <tr>
                             <td class='text-center'><?= $no++ ?></td>
                             <td><?= $item['Nama']; ?><br> <small><b>Kode :</b><?= $item['Kode']; ?></small></td>
@@ -63,8 +66,13 @@ $CI->load->library('MyLib');
                                 </div>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
-                        
+                        <?php endforeach; 
+                            }else{
+                        ?>
+                            <tr><td class='text-center'colspan='6'>Data masih kosong</td></tr>
+
+
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
