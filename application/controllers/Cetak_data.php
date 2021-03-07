@@ -56,6 +56,7 @@ class Cetak_data extends CI_Controller {
 		// $this->api_url_anggaran = base_url().'api/anggaran';
 		// $this->api_url_pejabat = base_url().'api/pejabat';
 		$this->api_url_penunjukan_peyedia = base_url().'api/penunjukan_penyedia';
+		$this->api_url_spk = base_url().'api/spk';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -74,7 +75,23 @@ class Cetak_data extends CI_Controller {
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "surat-penunjukan-penyedia.pdf";
 			$this->pdf->load_view('cetak_pdf/penunjukan_penyedia',$data);
-			// $this->load->view('cetak_pdf/penunjukan_penyedia',$data);
+		}else{
+			redirect('data_pekerjaan');
+		}
+	}
+	public function spk(){
+		if(!empty($this->uri->segment(3))){
+			$data['Id'] = $this->uri->segment(3);
+			$param= array(
+					"query" => $data,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response = json_decode($this->myGuzzle->request_get($this->api_url_spk,$param),true);
+			$data['data'] = $response['data'][0];
+			$this->load->library('pdf');
+			$this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->filename = "surat-spk.pdf";
+			$this->pdf->load_view('cetak_pdf/spk',$data);
 		}else{
 			redirect('data_pekerjaan');
 		}

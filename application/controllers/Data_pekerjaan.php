@@ -184,6 +184,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_spk = json_decode($this->myGuzzle->request_post($this->api_url_spk,$param_spk),true);
 			unset($datas['NoSuratHps']);
 			$data['spk'] = $response_spk;
+			
 
 			/**
 			 * getData PPHP
