@@ -24,7 +24,7 @@ $CI->load->library('MyLib');
                     <h5>Pekerjaan</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">20</h1>
+                    <h1 class="no-margins">0</h1>
                     <!-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> -->
                     <small>Telah Selesai</small>
                 </div>
@@ -37,7 +37,7 @@ $CI->load->library('MyLib');
                     <h5>Pekerjaan</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">2</h1>
+                    <h1 class="no-margins">0</h1>
                     <!-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> -->
                     <small>Telah Selesai</small>
                 </div>
