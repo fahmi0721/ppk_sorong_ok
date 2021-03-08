@@ -28,6 +28,7 @@ $CI->load->library('MyLib');
             font-size: 14px;
             position:relative;
         }
+        
         .tembusan{ position:absolute; bottom:0;}
         .text-center{ text-align : center; }
         .text-top{ vertical-align : text-top; }

@@ -100,6 +100,7 @@ class Cetak_data extends CI_Controller {
 		}
 	}
 
+	
 	public function pphp(){
 		if(!empty($this->uri->segment(3))){
 			$data['Id'] = $this->uri->segment(3);
