@@ -49,6 +49,7 @@ class Data_pekerjaan extends CI_Controller {
 	protected $api_url_baphp;
 	protected $api_url_bastb;
 	protected $api_url_ba_bayar;
+	protected $api_url_kwitansi;
 	protected $result;
 
 	function __construct(){
@@ -66,6 +67,7 @@ class Data_pekerjaan extends CI_Controller {
 		$this->api_url_baphp = base_url().'api/data_pekerjaan/baphp';
 		$this->api_url_bastb = base_url().'api/data_pekerjaan/bastb';
 		$this->api_url_ba_bayar = base_url().'api/data_pekerjaan/ba_bayar';
+		$this->api_url_kwitansi = base_url().'api/data_pekerjaan/kwitansi';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -242,6 +244,20 @@ class Data_pekerjaan extends CI_Controller {
 			unset($datas['NoSuratHps']);
 			$data['ba_bayar'] = $response_ba_bayar;
 			$Tot = $response_ba_bayar['row'] > 0 ? $Tot + 1 : $Tot;
+
+			/**
+			 * getData KWITANSI
+			 * 
+			 */
+			$datas['NoSuratHps'] = $data['hps']['NoSurat'];
+			$param_kwitansi= array(
+					"form_params" => $datas,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response_kwitansi = json_decode($this->myGuzzle->request_post($this->api_url_kwitansi,$param_kwitansi),true);
+			unset($datas['NoSuratHps']);
+			$data['kwitansi'] = $response_kwitansi;
+			$Tot = $response_kwitansi['row'] > 0 ? $Tot + 1 : $Tot;
 			
 			$data['Tot'] = $Tot;
 			$data['Progress'] = ($Tot/8)*100;

@@ -267,6 +267,41 @@ $CI->load->library('MyLib');
                                 <?php } ?>
                             </div>
                         </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                            <h2>Dokumen Kwitansi </h2>
+                                <?php if($kwitansi['row'] > 0){ ?>
+                                   <p>No Bukti : <b><?= $kwitansi['data']['NoBukti'] ?></b></p>
+                                   <p>Tanggal: <b><?= $CI->mylib->tgl_indo($kwitansi['data']['Tgl']) ?></b><p>
+                                    
+                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $kwitansi['data']['Id']; ?>','kwitansi')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a href="<?= base_url('kwitansi/edit/'.$kwitansi['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a href="<?= base_url('cetak_data/kwitansi/'.$kwitansi['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <span class="vertical-date">
+                                        <?= $CI->mylib->hari_indo($kwitansi['data']['Tgl']) ?> <br/>
+                                    <small><?= $CI->mylib->tgl_indo($kwitansi['data']['Tgl']) ?></small>
+                                </span>
+                                <?php }else{ ?>
+                                    <p>Dokumen ini belum dibuat</p>
+                                    <?php if($bastb['row'] > 0){ ?>
+                                    <a href="<?= base_url('kwitansi/tambah/'.$hps['Id']) ?>" class="btn btn-sm btn-success"> Buat Dokumen </a>
+                                    <?php } else{ ?>
+                                        <small>Buat Dokumen Kwitansi</small>
+                                    <?php } ?>
+                                    <span class="vertical-date">
+                                        - <br/>
+                                        <small>-</small>
+                                    </span>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    
                     </div>
                 </div>
             </div>

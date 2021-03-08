@@ -56,7 +56,8 @@ class Data_pekerjaan extends REST_Controller {
                     }else{
                         $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -64,14 +65,16 @@ class Data_pekerjaan extends REST_Controller {
                     $data = $this->m->loadData();
                     if(!empty($data)){
                         $message = [
-                            "status" => TRUE,
-                            "data" => $data
+                            "status" => FALSE,
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_OK);
                     }else{
                         $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -111,14 +114,16 @@ class Data_pekerjaan extends REST_Controller {
                     }else{
                         $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
                 }else{
                     $message = [
                         "status" => FALSE,
-                        "message" => "data empty in table"
+                        "data" => 0,
+                        "row" => 0,
                     ];
                     $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
                 }
@@ -155,9 +160,10 @@ class Data_pekerjaan extends REST_Controller {
                         ];
                         $this->response($message, REST_Controller::HTTP_OK);
                     }else{
-                        $message = [
+                       $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -201,9 +207,10 @@ class Data_pekerjaan extends REST_Controller {
                         ];
                         $this->response($message, REST_Controller::HTTP_OK);
                     }else{
-                        $message = [
+                       $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -249,7 +256,8 @@ class Data_pekerjaan extends REST_Controller {
                     }else{
                         $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -295,7 +303,8 @@ class Data_pekerjaan extends REST_Controller {
                     }else{
                         $message = [
                             "status" => FALSE,
-                            "message" => "data empty in table"
+                            "data" => 0,
+                            "row" => 0,
                         ];
                         $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                     }
@@ -303,6 +312,54 @@ class Data_pekerjaan extends REST_Controller {
                     $message = [
                         "status" => FALSE,
                         "message" => "data empty in table"
+                    ];
+                    $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
+                }
+                
+            } catch (\Exception $e) {
+                $this->response($e->getMessage(), REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+            }
+            
+        }else{
+            $this->response($is_valid_token , REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+        }
+        
+        
+    }
+
+    public function kwitansi_post(){
+        /**
+         * Get Kwitansi
+         * @param: id
+         * @return: data Kwitansi
+         */
+        $is_valid_token = $this->authorization_token->validateToken();
+        if(!empty($is_valid_token) && $is_valid_token['status'] === TRUE){
+            try {
+                $NoSuratHps = $this->post('NoSuratHps');
+                // echo $NoSuratHps; exit;
+                if(!empty($NoSuratHps) && $NoSuratHps != NULL){
+                    $data = $this->m->loadDataKwitansi($NoSuratHps);
+                    if(!empty($data)){
+                        $message = [
+                            "status" => TRUE,
+                            "data" => $data['data'],
+                            "row" => $data['row'],
+                        ];
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    }else{
+                        $message = [
+                            "status" => FALSE,
+                            "data" => 0,
+                            "row" => 0,
+                        ];
+                        $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    }
+                }else{
+                    $message = [
+                        "status" => FALSE,
+                        "data" => 0,
+                        "row" => 0,
                     ];
                     $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
                 }

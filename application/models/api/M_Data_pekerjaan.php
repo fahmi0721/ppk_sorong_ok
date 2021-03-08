@@ -75,6 +75,18 @@ class M_Data_pekerjaan extends CI_Model {
             return $result;
         }
 
+        function loadDataKwitansi($NoSuratHps){
+            $this->db->where('NoSuratHps', $NoSuratHps);
+            $query = $this->db->get("ppk_kwitansi");
+            $row = $query->num_rows();
+            $data = $query->row();
+            $result = [
+                "row" => $row,
+                "data" => $data
+            ];
+            return $result;
+        }
+
         function spk_tahun_ini_jalan(){
             $year = date("Y");
             $this->db->where("DATE_FORMAT(Tgl,'%Y')", $year);

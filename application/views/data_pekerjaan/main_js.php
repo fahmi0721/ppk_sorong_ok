@@ -158,6 +158,8 @@
                     SubmitDeleteBastb(Id);
                 }else if(Modul === "ba_bayar"){
                     SubmitDeleteBa_bayar(Id);
+                }else if(Modul === "kwitansi"){
+                    SubmitDeleteKwitansi(Id);
                 }
                 
                 
@@ -322,6 +324,30 @@
                     FormMessage("Modul Dokumen Berita Acara Pembayaran",response['message'],'error');
                 }else{
                     FormMessage('Modul Dokumen Berita Acara Pembayaran', response['message']);
+                    setTimeout(function(){
+                        window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
+                    },1300)
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+    }
+
+    function SubmitDeleteKwitansi(Id){
+        iData = "Id="+Id;
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('kwitansi/delete'); ?>",
+            data : iData,
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['status'] === false){
+                    FormMessage("Modul Dokumen Kwitansi",response['message'],'error');
+                }else{
+                    FormMessage('Modul Dokumen Kwitansi', response['message']);
                     setTimeout(function(){
                         window.location = "<?= base_url('data_pekerjaan/progres/'.$hps['Id']) ?>";
                     },1300)
