@@ -60,6 +60,7 @@ class Cetak_data extends CI_Controller {
 		$this->api_url_penunjukan_peyedia = base_url().'api/penunjukan_penyedia';
 		$this->api_url_spk = base_url().'api/spk';
 		$this->api_url_pphp = base_url().'api/pphp';
+		$this->api_url_baphp = base_url().'api/baphp';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -100,7 +101,7 @@ class Cetak_data extends CI_Controller {
 		}
 	}
 
-	
+
 	public function pphp(){
 		if(!empty($this->uri->segment(3))){
 			$data['Id'] = $this->uri->segment(3);
@@ -114,6 +115,24 @@ class Cetak_data extends CI_Controller {
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "surat-pphp.pdf";
 			$this->pdf->load_view('cetak_pdf/pphp',$data);
+		}else{
+			redirect('data_pekerjaan');
+		}
+	}
+
+	public function baphp(){
+		if(!empty($this->uri->segment(3))){
+			$data['Id'] = $this->uri->segment(3);
+			$param= array(
+					"query" => $data,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response = json_decode($this->myGuzzle->request_get($this->api_url_baphp,$param),true);
+			$data['data'] = $response['data'][0];
+			$this->load->library('pdf');
+			$this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->filename = "surat-baphp.pdf";
+			$this->pdf->load_view('cetak_pdf/baphp',$data);
 		}else{
 			redirect('data_pekerjaan');
 		}

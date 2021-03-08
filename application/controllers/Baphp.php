@@ -22,7 +22,6 @@ class Baphp extends CI_Controller {
 	protected $lib;
 	protected $token;
 	protected $api_url_hps;
-	protected $api_url_pejabat;
 	protected $api_url_pemeriksa;
 	protected $api_url_pphp;
 	protected $api_url;
@@ -38,7 +37,6 @@ class Baphp extends CI_Controller {
 		$this->myGuzzle = new GuzzleMe();
 		$this->token = $this->session->userdata('token');
 		$this->api_url_hps = base_url().'api/hps';
-		$this->api_url_pejabat = base_url().'api/pejabat';
 		$this->api_url_pemeriksa = base_url().'api/panitia_pemeriksa';
 		$this->api_url_pphp = base_url().'api/data_pekerjaan/pphp';
 		$this->api_url = base_url().'api/baphp';
@@ -66,8 +64,6 @@ class Baphp extends CI_Controller {
 				"headers" => array("Authorization" => $this->token)
 			);
 			
-			$response_pejabat = json_decode($this->myGuzzle->request_get($this->api_url_pejabat,$param_all),true);
-			$data['pejabat'] = $response_pejabat['data'];
 			$response_pemeriksa = json_decode($this->myGuzzle->request_get($this->api_url_pemeriksa,$param_all),true);
 			$data['pemeriksa'] = $response_pemeriksa['data'];
 			/**
@@ -103,14 +99,12 @@ class Baphp extends CI_Controller {
 				"headers" => array("Authorization" => $this->token)
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url,$param),true);
-			$response_pejabat = json_decode($this->myGuzzle->request_get($this->api_url_pejabat,$param_all),true);
 			$response_pemeriksa = json_decode($this->myGuzzle->request_get($this->api_url_pemeriksa,$param_all),true);
 			$data['baphp'] = $response['data'][0];
 			$hps = json_decode($data['baphp']['DataPphp'],true);
 			$hps = json_decode($hps['DataSpk'],true);
 			$hps = json_decode($hps['DataPP'],true);
 			$data['hps'] = json_decode($hps['DataHps'],true);
-			$data['pejabat'] = $response_pejabat['data'];
 			$data['pemeriksa'] = $response_pemeriksa['data'];
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
@@ -129,7 +123,6 @@ class Baphp extends CI_Controller {
 		$data['NoSuratPphp'] = $this->input->post('NoSuratPphp');
 		$data['Tgl'] = $this->input->post('Tgl');
 		$data['KodePanitiaPemeriksa'] = $this->input->post('KodePanitiaPemeriksa');
-		$data['KodePejabat'] = $this->input->post('KodePejabat');
 		$param= array(
 				"form_params" => $data,
 				"headers" => array("Authorization" => $this->token)
@@ -146,7 +139,6 @@ class Baphp extends CI_Controller {
 		$data['NoSuratPphp'] = $this->input->post('NoSuratPphp');
 		$data['Tgl'] = $this->input->post('Tgl');
 		$data['KodePanitiaPemeriksa'] = $this->input->post('KodePanitiaPemeriksa');
-		$data['KodePejabat'] = $this->input->post('KodePejabat');
 		$param= array(
 				"form_params" => $data,
 				"headers" => array("Authorization" => $this->token)

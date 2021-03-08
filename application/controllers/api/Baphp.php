@@ -105,8 +105,6 @@ class Baphp extends REST_Controller {
                 $res['DataPphp'] = $this->m->getDataPphp($this->post('NoSuratPphp'));
                 $res['KodePanitiaPemeriksa'] = $this->post('KodePanitiaPemeriksa');
                 $res['DataPemeriksa'] = $this->m->getDataPanitiaPemeriksa($this->post('KodePanitiaPemeriksa'));
-                $res['KodePejabat'] = $this->post('KodePejabat');
-                $res['DataPejabat'] = $this->m->getDataPejabat($this->post('KodePejabat'));
                 $res['UserId'] = $this->UserId;
                 if($this->m->cekDataExits($res['NoSurat']) <= 0){
                     if($this->m->createData($res) > 0){
@@ -158,8 +156,6 @@ class Baphp extends REST_Controller {
                 $res['DataPphp'] = $this->m->getDataPphp($this->put('NoSuratPphp'));
                 $res['KodePanitiaPemeriksa'] = $this->put('KodePanitiaPemeriksa');
                 $res['DataPemeriksa'] = $this->m->getDataPanitiaPemeriksa($this->put('KodePanitiaPemeriksa'));
-                $res['KodePejabat'] = $this->put('KodePejabat');
-                $res['DataPejabat'] = $this->m->getDataPejabat($this->put('KodePejabat'));
                 $res['UserId'] = $this->UserId;
                 if($this->m->updateData($res,$Id) > 0){
                     $message = [

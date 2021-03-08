@@ -28,8 +28,8 @@
 
 
     function Validasi(){
-        var iData = ["#NoSurat","#Tgl","#KodePejabat","#KodePanitiaPemeriksa"];
-        var iKet = ["Nomor Surat belum lengkap!","Tanggal Surat belum lengkap!","Pejabat yang bertanda tanngan belum dipilih!","No SK Panitia Pemeriksa belum dipilih!"];
+        var iData = ["#NoSurat","#Tgl","#KodePanitiaPemeriksa"];
+        var iKet = ["Nomor Surat belum lengkap!","Tanggal Surat belum lengkap!","No SK Panitia Pemeriksa belum dipilih!"];
         for(var i =0; i < iData.length; i++){
             if($(iData[i]).val() === ""){
                 PesanWarning('Pengisian Data', iKet[i]);

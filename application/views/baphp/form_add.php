@@ -54,16 +54,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Pejabat yang bertanda tangan</label> 
-                                <select class="select2_demo_2 form-control" name='KodePejabat' id='KodePejabat'>
-                                <option value=""></option>
-                                    <?php foreach($pejabat as $item): ?>
-                                        <option value="<?= $item['Kode'] ?>"><?= $item['Nama']; ?> [<?= $item['Nip'] ?>]</option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label>No SK Pemeriksa</label> 
                                 <select class="select2_demo_2 form-control" name='KodePanitiaPemeriksa' id='KodePanitiaPemeriksa'>
                                 <option value=""></option>
