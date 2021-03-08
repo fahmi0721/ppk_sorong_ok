@@ -155,7 +155,7 @@ $CI->load->library('MyLib');
                 PIHAK KEDUA <br>
                 <?= $vendor['Nama'] ?>
                 <br><br><br><br><br><br>
-                <u><?= $vendor['NamaPimpinan'] ?></u>
+                <u><?= $vendor['NamaPimpinan'] ?></u><br>
                 <?= $vendor['Jabatan'] ?>
             </td>
             <td width='50%' class='text-center'>
