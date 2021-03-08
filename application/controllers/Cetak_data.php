@@ -61,6 +61,7 @@ class Cetak_data extends CI_Controller {
 		$this->api_url_pphp = base_url().'api/pphp';
 		$this->api_url_baphp = base_url().'api/baphp';
 		$this->api_url_bastb = base_url().'api/bastb';
+		$this->api_url_ba_bayar = base_url().'api/ba_bayar';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -151,6 +152,24 @@ class Cetak_data extends CI_Controller {
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "surat-bastb.pdf";
 			$this->pdf->load_view('cetak_pdf/bastb',$data);
+		}else{
+			redirect('data_pekerjaan');
+		}
+	}
+
+	public function ba_bayar(){
+		if(!empty($this->uri->segment(3))){
+			$data['Id'] = $this->uri->segment(3);
+			$param= array(
+					"query" => $data,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response = json_decode($this->myGuzzle->request_get($this->api_url_ba_bayar,$param),true);
+			$data['data'] = $response['data'][0];
+			$this->load->library('pdf');
+			$this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->filename = "surat-ba-bayar.pdf";
+			$this->pdf->load_view('cetak_pdf/ba_bayar',$data);
 		}else{
 			redirect('data_pekerjaan');
 		}
