@@ -55,7 +55,7 @@ $CI->load->library('MyLib');
 
     ?>
     <p class='text-center bold title'><u>BERITA ACARA PEMERIKSAAN HASIL PEKERJAAN</u></p>
-    <p class='text-center bold title'>Nomor : <?= $data['NoSurat'] ?></p>
+    <p class='text-center bold title'>NOMOR : <?= $data['NoSurat'] ?></p>
     <br>
     <p class='text-justify'>Berdasarkan surat Pejabat Pembuat Komitmen pekerjaan pemeliharaan kelas sorong Nomor : <?= $pphp['NoSurat'] ?> tanggal <?= $CI->mylib->tgl_indo($pphp['Tgl']) ?> tentang Permintaan Pemeriksaan Hasil Pengadaan Barang/Jasa maka pada hari ini <b><?= $CI->mylib->hari_indo($data['Tgl']) ?></b>, kami yang bertanda tangan dibawah ini :</p>
     <p>
