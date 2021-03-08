@@ -125,7 +125,7 @@ $CI->load->library('MyLib');
             <td colspan='4'>INSTRUKSI KEPADA PENYEDIA: Penagihan hanya dapat dilakukan setelah penyelesaian pekerjaan yang diperintahkan dalam SPK ini dan dibuktikan dengan Berita Acara Serah Terima. Jika pekerjaan tidak dapat diselesaikan dalam jangka waktu pelaksanaan pekerjaan karena kesalahan atau kelalaian Penyedia maka Penyedia berkewajiban untuk membayar denda kepada PPK sebesar 1/1000 (satu per seribu) dari nilai SPK atau nilai bagian SPK untuk setiap hari keterlambatan.</td>
         </tr>
         <tr>
-            <td colspan='2' valign='top' class='text-center'>Untuk dan atas nama <br>Politeknik Pelayaran Banten <br>Pejabat Pembuat Komitmen<br>Badan Layanan Umum (BLU)
+            <td colspan='2' valign='top' class='text-center'>Untuk dan atas nama <br>Politeknik Pelayaran Sorong <br>Pejabat Pembuat Komitmen<br>Badan Layanan Umum (BLU)
                 <br><br><br><br><br>
                 <?php 
                     $pejabat = json_decode($data['DataPejabat'],true);
