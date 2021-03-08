@@ -1,3 +1,7 @@
+<?php
+$CI =& get_instance();
+$CI->load->library('MyLib');
+?>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-3">
@@ -7,7 +11,7 @@
                     <h5>Vendor</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">40</h1>
+                    <h1 class="no-margins"><?= $CI->mylib->rupiah1($tot_vendor) ?></h1>
                     <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
                     <small>Total Vendor</small>
                 </div>
@@ -46,7 +50,7 @@
                     <h5>Pekerjaan</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">80,600</h1>
+                    <h1 class="no-margins"><?= $CI->mylib->rupiah1($tahun_ini_jalan) ?></h1>
                     <!-- <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div> -->
                     <small>Dalam Proses</small>
                 </div>
@@ -66,19 +70,8 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3 col-sm-offset-9">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-sm btn-primary" type="button">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped dataTables-example">
                         <thead>
                         <tr>
 
@@ -90,62 +83,27 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            if($row > 0){
+                            foreach($data as $item):
+                            $pp = json_decode($item['DataPP'],true);
+                            $vendor = json_decode($pp['DataVendor'],true);
+                            $hps = json_decode($pp['DataHps'],true);
+                        ?>
                         <tr>
                             <td>1</td>
-                            <td>Project <small>This is example of project</small></td>
-                            <td>0800 051213</td>
-                            <td>Inceptos Hymenaeos Ltd</td>
-                            <td>20%</td>
+                            <td><?= $hps['Pekerjaan'] ?></td>
+                            <td><?= $item['NoSpk'] ?></td>
+                            <td><?= $vendor['Nama'] ?></td>
+                            <td><?= $CI->progres($hps['Id']) ?>%</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Alpha project</td>
-                            <td>0500 780909</td>
-                            <td>Nec Euismod In Company</td>
-                            <td>40%</td>
+                        <?php 
+                            endforeach;
+                        }else{ ?>
+                            <tr>
+                            <td colspan='5'>Pekerjaan belum dibuat</td>
                         </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Betha project</td>
-                            <td>0800 1111</td>
-                            <td>Erat Volutpat</td>
-                            <td>75%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Gamma project</td>
-                            <td>(016977) 0648</td>
-                            <td>Tellus Ltd</td>
-                            <td>18%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Alpha project</td>
-                            <td>0500 780909</td>
-                            <td>Nec Euismod In Company</td>
-                            <td>40%</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Project <small>This is example of project</small></td>
-                            <td>0800 051213</td>
-                            <td>Inceptos Hymenaeos Ltd</td>
-                            <td>20%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Gamma project</td>
-                            <td>(016977) 0648</td>
-                            <td>Tellus Ltd</td>
-                            <td>18%</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Project <small>This is example of project</small></td>
-                            <td>0800 051213</td>
-                            <td>Inceptos Hymenaeos Ltd</td>
-                            <td>20%</td>
-                        </tr>
+                        <?php } ?>
                         
                         </tbody>
                     </table>
@@ -155,3 +113,30 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        ShowdataTable();
+    })
+    function ShowdataTable(){
+        $('.dataTables-example').DataTable({
+            pageLength: 25,
+            responsive: true,
+            ordering: false,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                {extend: 'excel', title: 'DataProgress'},
+                {extend: 'print',
+                    customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
+
+        });
+    }
+</script>

@@ -31,7 +31,7 @@ $CI->load->library('MyLib');
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="text-center  p-md">
-                    <span>Progress Pekerjaan 10% </span>
+                    <span>Progress Pekerjaan <?= $Progress ?>% </span>
                 </div>
                 <div class="" id="ibox-content">
                     <div id="vertical-timeline" class="vertical-container center-orientation light-timeline">

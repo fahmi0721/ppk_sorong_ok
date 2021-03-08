@@ -319,7 +319,21 @@ class Data_pekerjaan extends REST_Controller {
     }
 
    
+    public function spk_tahun_ini_get(){
+        try{
+            $data = $this->m->spk_tahun_ini_jalan();
+            $message = [
+                "status" => TRUE,
+                "data" => $data,
+            ];
+            $this->response($message, REST_Controller::HTTP_OK);
+            
+        } catch (\Exception $e) {
+            $this->response($e->getMessage(), REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+        }
     
+        
+    }
 
     
 

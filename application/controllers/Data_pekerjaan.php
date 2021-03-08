@@ -148,6 +148,7 @@ class Data_pekerjaan extends CI_Controller {
 	public function progres()
 	{	
 		if($this->uri->segment(3) != ""){
+			$Tot =1;
 			/** 
 			 * getData HPS
 			 * 
@@ -171,7 +172,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_penunjukan_peyedia = json_decode($this->myGuzzle->request_post($this->api_url_penunjukan_peyedia,$param_penunjukan_peyedia),true);
 			unset($datas['NoSuratHps']);
 			$data['penunjukan_peyedia'] = $response_penunjukan_peyedia;
-
+			$Tot = $response_penunjukan_peyedia['row'] > 0 ? $Tot + 1 : $Tot;
 			/**
 			 * getData SPK
 			 * 
@@ -184,6 +185,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_spk = json_decode($this->myGuzzle->request_post($this->api_url_spk,$param_spk),true);
 			unset($datas['NoSuratHps']);
 			$data['spk'] = $response_spk;
+			$Tot = $response_spk['row'] > 0 ? $Tot + 1 : $Tot;
 			
 
 			/**
@@ -198,6 +200,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_pphp = json_decode($this->myGuzzle->request_post($this->api_url_pphp,$param_pphp),true);
 			unset($datas['NoSuratHps']);
 			$data['pphp'] = $response_pphp;
+			$Tot = $response_pphp['row'] > 0 ? $Tot + 1 : $Tot;
 
 			/**
 			 * getData BASTB
@@ -211,6 +214,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_bastb = json_decode($this->myGuzzle->request_post($this->api_url_bastb,$param_bastb),true);
 			unset($datas['NoSuratHps']);
 			$data['bastb'] = $response_bastb;
+			$Tot = $response_bastb['row'] > 0 ? $Tot + 1 : $Tot;
 
 			/**
 			 * getData BAPHP
@@ -224,6 +228,7 @@ class Data_pekerjaan extends CI_Controller {
 			$response_baphp = json_decode($this->myGuzzle->request_post($this->api_url_baphp,$param_baphp),true);
 			unset($datas['NoSuratHps']);
 			$data['baphp'] = $response_baphp;
+			$Tot = $response_baphp['row'] > 0 ? $Tot + 1 : $Tot;
 			/**
 			 * getData BA_BAYAR
 			 * 
@@ -236,7 +241,10 @@ class Data_pekerjaan extends CI_Controller {
 			$response_ba_bayar = json_decode($this->myGuzzle->request_post($this->api_url_ba_bayar,$param_ba_bayar),true);
 			unset($datas['NoSuratHps']);
 			$data['ba_bayar'] = $response_ba_bayar;
+			$Tot = $response_ba_bayar['row'] > 0 ? $Tot + 1 : $Tot;
 			
+			$data['Tot'] = $Tot;
+			$data['Progress'] = ($Tot/8)*100;
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
 			$this->load->view('data_pekerjaan/progres',$data);
@@ -246,6 +254,8 @@ class Data_pekerjaan extends CI_Controller {
 		}
 
 	}
+
+	
 
 	
 

@@ -74,6 +74,14 @@ class M_Data_pekerjaan extends CI_Model {
             ];
             return $result;
         }
+
+        function spk_tahun_ini_jalan(){
+            $year = date("Y");
+            $this->db->where("DATE_FORMAT(Tgl,'%Y')", $year);
+            $query = $this->db->get("ppk_spk");
+            $row = $query->num_rows();
+            return $row;
+        }
         
 
 
