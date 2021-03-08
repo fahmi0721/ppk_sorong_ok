@@ -25,7 +25,7 @@ $CI->load->library('MyLib');
         }
         body{
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
+            font-size: 14px;
         }
         ul.b li{
             list-style-position: outside;

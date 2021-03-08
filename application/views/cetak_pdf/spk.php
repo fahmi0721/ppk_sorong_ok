@@ -25,7 +25,7 @@ $CI->load->library('MyLib');
         }
         body{
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
+            font-size: 14px;
         }
         .img-c{ width:100%; margin-top:10%}
         .text-center { text-align:center; }

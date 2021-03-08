@@ -44,6 +44,8 @@ class Cetak_data extends CI_Controller {
 	protected $api_url_anggaran;
 	protected $api_url_pejabat;
 	protected $api_url_penunjukan_peyedia;
+	protected $api_url_spk;
+	protected $api_url_pphp;
 	protected $result;
 
 	function __construct(){
@@ -57,6 +59,7 @@ class Cetak_data extends CI_Controller {
 		// $this->api_url_pejabat = base_url().'api/pejabat';
 		$this->api_url_penunjukan_peyedia = base_url().'api/penunjukan_penyedia';
 		$this->api_url_spk = base_url().'api/spk';
+		$this->api_url_pphp = base_url().'api/pphp';
 		$this->token = $this->session->userdata('token');
 	}
 
@@ -92,6 +95,24 @@ class Cetak_data extends CI_Controller {
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "surat-spk.pdf";
 			$this->pdf->load_view('cetak_pdf/spk',$data);
+		}else{
+			redirect('data_pekerjaan');
+		}
+	}
+
+	public function pphp(){
+		if(!empty($this->uri->segment(3))){
+			$data['Id'] = $this->uri->segment(3);
+			$param= array(
+					"query" => $data,
+					"headers" => array("Authorization" => $this->token)
+			);
+			$response = json_decode($this->myGuzzle->request_get($this->api_url_pphp,$param),true);
+			$data['data'] = $response['data'][0];
+			$this->load->library('pdf');
+			$this->pdf->setPaper('A4', 'potrait');
+			$this->pdf->filename = "surat-pphp.pdf";
+			$this->pdf->load_view('cetak_pdf/pphp',$data);
 		}else{
 			redirect('data_pekerjaan');
 		}
