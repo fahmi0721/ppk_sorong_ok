@@ -65,7 +65,7 @@ $CI->load->library('MyLib');
                 Berdasarkan Surat Keputusan Direktur Politeknik Pelayaran Banten Nomor : <?= $pemeriksa['NoSk'] ?> tanggal <?= $CI->mylib->tgl_indo($pemeriksa['Tanggal']) ?> tentang <?= $pemeriksa['Perihal'] ?> Tahun Anggaran <?= $pemeriksa['Tahun'] ?>.
                 <p>Yang selanjutnya disebut sebagai PIHAK KESATU</p>
             </li>
-            <li>Penyedia Barang/Jasa : <?= $vendor['Nama'] ?> selaku <?= $vendor['Jabatan'] ?> <?= $vendor['Nama'] ?>
+            <li>Penyedia Barang/Jasa : <?= $vendor['NamaPimpinan'] ?> selaku <?= $vendor['Jabatan'] ?> <?= $vendor['Nama'] ?>
                 <p>Yang selanjutnya disebut sebagai PIHAK KEDUA</p>
             </li>
         </ul>
