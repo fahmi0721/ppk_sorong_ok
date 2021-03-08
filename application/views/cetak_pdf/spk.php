@@ -40,7 +40,7 @@ $CI->load->library('MyLib');
 </head>
 <body>
     <div id="page1">
-    <div class='img-c'><center><img src="<?= base_url('public/img/logo.png') ?>" align='center'></center></div>
+    <div class='img-c'><center><img src="<?= base_url('public/img/logo.jpg') ?>" align='center'></center></div>
     <h2 class='text-center'>SURAT PERINTAH KERJA (SPK)</h2>
     <table width="50%" align='center'>
         <tr>
