@@ -13,6 +13,7 @@
  */
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 class Pdf extends Dompdf{
     /**
      * PDF filename
@@ -42,6 +43,9 @@ class Pdf extends Dompdf{
      * @return    void
      */
     public function load_view($view, $data = array()){
+        $options = new Options();
+        $options->set('isRemoteEnabled',true);   
+        $this->setOptions($options);
         $html = $this->ci()->load->view($view, $data, TRUE);
         $this->load_html($html);
         // Render the PDF
