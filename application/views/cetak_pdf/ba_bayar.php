@@ -154,8 +154,8 @@ $CI->load->library('MyLib');
         <tr>
             <td width='60%' class='text-center'></td>
             <td width='40%' class='text-justify' style='border-bottom:1px solid #777;'>
-                D i b u a t di &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;<?= $data['Dibuatdi'] ?><br>
-                T a n g g a l  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;<?= $CI->mylib->tgl_indo($data['Tgl']) ?>
+                D i b u a t &nbsp; di &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;<?= $data['Dibuatdi'] ?><br>
+                T a n g g a l &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;<?= $CI->mylib->tgl_indo($data['Tgl']) ?>
             </td>
         </tr>
     </table>

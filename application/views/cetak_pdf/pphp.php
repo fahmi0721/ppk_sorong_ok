@@ -106,7 +106,7 @@ $CI->load->library('MyLib');
             <td class='text-top'></td>
             <td class='text-center text-top' width='1%'></td>
             <td class='text-bold'></td>
-            <td class='text-top'>di-</td>
+            <td class='text-top'>&nbsp;&nbsp;&nbsp;&nbsp;di-</td>
             <td class='text-top'></td>
         </tr>
         <tr>
