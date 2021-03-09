@@ -46,9 +46,8 @@ $CI->load->library('MyLib');
                                 <p><?= $hps['Pekerjaan']; ?><br>
                                     <small>No Surat : <b><?= $hps['NoSurat'] ?></b></small><br>
                                     <small>Anggaran  : <b><?= $Anggaran['Nama'] ?></b></small><br>
-
                                 </p>
-                                <a href="<?= base_url('data_pekerjaan/cetak/'.$hps['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                <a href="<?= base_url('data_pekerjaan/cetak/'.$hps['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF' style='margin-right:5px'><i class='fa fa-file-pdf-o'></i> Cetak</a>
                                 <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                 <span class='clearfix'></span>
                                 <span class="vertical-date">
@@ -74,9 +73,9 @@ $CI->load->library('MyLib');
                                     <small>No Surat : <b><?= $penunjukan_peyedia['data']['NoSurat'] ?></b></small><br>
                                     <small> Tanggal Penawara Vendor: <b><?= $CI->mylib->tgl_indo($penunjukan_peyedia['data']['TglPenawaran']) ?></b></small><br>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $penunjukan_peyedia['data']['Id']; ?>','penunjukan_penyedia')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('penunjukan_penyedia/edit/'.$penunjukan_peyedia['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/penunjukan_penyedia/'.$penunjukan_peyedia['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $penunjukan_peyedia['data']['Id']; ?>','penunjukan_penyedia')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen' style='margin-left:5px'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a href="<?= base_url('penunjukan_penyedia/edit/'.$penunjukan_peyedia['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen' style='margin-left:5px'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a href="<?= base_url('cetak_data/penunjukan_penyedia/'.$penunjukan_peyedia['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF' style='margin-left:5px'><i class='fa fa-file-pdf-o'></i> Cetak</a>
                                     <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($penunjukan_peyedia['data']['Tgl']) ?> <br/>
@@ -105,9 +104,9 @@ $CI->load->library('MyLib');
                                     <small>No SPK : <b><?= $spk['data']['NoSpk'] ?></b></small><br>
                                     <small> Tanggal SPK: <b><?= $CI->mylib->tgl_indo($spk['data']['Tgl']) ?></b></small><br>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $spk['data']['Id']; ?>','spk')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('spk/edit/'.$spk['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/spk/'.$spk['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $spk['data']['Id']; ?>','spk')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-right:5px' href="<?= base_url('spk/edit/'.$spk['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-right:5px' href="<?= base_url('cetak_data/spk/'.$spk['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
                                     <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($spk['data']['Tgl']) ?> <br/>
@@ -140,9 +139,9 @@ $CI->load->library('MyLib');
                                     <small>No Surat : <b><?= $pphp['data']['NoSurat'] ?></b></small><br>
                                     <small> Tanggal Surat: <b><?= $CI->mylib->tgl_indo($pphp['data']['Tgl']) ?></b></small><br>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $pphp['data']['Id']; ?>','pphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('pphp/edit/'.$pphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/pphp/'.$pphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $pphp['data']['Id']; ?>','pphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-left:5px' href="<?= base_url('pphp/edit/'.$pphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-left:5px' href="<?= base_url('cetak_data/pphp/'.$pphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
                                     <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($pphp['data']['Tgl']) ?> <br/>
@@ -177,9 +176,9 @@ $CI->load->library('MyLib');
                                     <small>No Surat : <b><?= $baphp['data']['NoSurat'] ?></b></small><br>
                                     <small> Tanggal Surat: <b><?= $CI->mylib->tgl_indo($baphp['data']['Tgl']) ?></b></small><br>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $baphp['data']['Id']; ?>','baphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('baphp/edit/'.$baphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/baphp/'.$baphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $baphp['data']['Id']; ?>','baphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-right:5px' href="<?= base_url('baphp/edit/'.$baphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-right:5px' href="<?= base_url('cetak_data/baphp/'.$baphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
                                     <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($baphp['data']['Tgl']) ?> <br/>
@@ -211,10 +210,10 @@ $CI->load->library('MyLib');
                                    <p>No Dokumen : <b><?= $bastb['data']['NoSurat'] ?></b></p>
                                    <p>Tanggal Surat: <b><?= $CI->mylib->tgl_indo($bastb['data']['Tgl']) ?></b><p>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $bastb['data']['Id']; ?>','bastb')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('bastb/edit/'.$bastb['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/bastb/'.$bastb['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $bastb['data']['Id']; ?>','bastb')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-left:5px' href="<?= base_url('bastb/edit/'.$bastb['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-left:5px' href="<?= base_url('cetak_data/bastb/'.$bastb['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-left:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($bastb['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($bastb['data']['Tgl']) ?></small>
@@ -245,10 +244,10 @@ $CI->load->library('MyLib');
                                    <p>No Dokumen : <b><?= $ba_bayar['data']['NoSurat'] ?></b></p>
                                    <p>Tanggal Surat: <b><?= $CI->mylib->tgl_indo($ba_bayar['data']['Tgl']) ?></b><p>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $ba_bayar['data']['Id']; ?>','ba_bayar')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('ba_bayar/edit/'.$ba_bayar['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/ba_bayar/'.$ba_bayar['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $ba_bayar['data']['Id']; ?>','ba_bayar')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-left:5px' href="<?= base_url('ba_bayar/edit/'.$ba_bayar['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-left:5px' href="<?= base_url('cetak_data/ba_bayar/'.$ba_bayar['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-left:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($ba_bayar['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($ba_bayar['data']['Tgl']) ?></small>
@@ -275,14 +274,15 @@ $CI->load->library('MyLib');
 
                             <div class="vertical-timeline-content">
                             <h2>Dokumen Kwitansi </h2>
+                            
                                 <?php if($kwitansi['row'] > 0){ ?>
                                    <p>No Bukti : <b><?= $kwitansi['data']['NoBukti'] ?></b></p>
                                    <p>Tanggal: <b><?= $CI->mylib->tgl_indo($kwitansi['data']['Tgl']) ?></b><p>
                                     
-                                    <a href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $kwitansi['data']['Id']; ?>','kwitansi')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
-                                    <a href="<?= base_url('kwitansi/edit/'.$kwitansi['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
-                                    <a href="<?= base_url('cetak_data/kwitansi/'.$kwitansi['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $kwitansi['data']['Id']; ?>','kwitansi')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
+                                    <a style='margin-right:5px' href="<?= base_url('kwitansi/edit/'.$kwitansi['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
+                                    <a style='margin-right:5px' href="<?= base_url('cetak_data/kwitansi/'.$kwitansi['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
+                                    <a style='margin-right:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($kwitansi['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($kwitansi['data']['Tgl']) ?></small>
