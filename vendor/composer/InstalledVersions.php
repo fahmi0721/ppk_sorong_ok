@@ -89,6 +89,24 @@ private static $installed = array (
       ),
       'reference' => '53330f47520498c0ae1f61f7e2c90f55690c06a3',
     ),
+    'laminas/laminas-escaper' => 
+    array (
+      'pretty_version' => '2.7.0',
+      'version' => '2.7.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5e04bc5ae5990b17159d79d331055e2c645e5cc5',
+    ),
+    'laminas/laminas-zendframework-bridge' => 
+    array (
+      'pretty_version' => '1.2.0',
+      'version' => '1.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6cccbddfcfc742eb02158d6137ca5687d92cee32',
+    ),
     'mikey179/vfsstream' => 
     array (
       'pretty_version' => 'v1.1.0',
@@ -155,6 +173,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0',
+    ),
+    'phpoffice/phpword' => 
+    array (
+      'pretty_version' => '0.18.1',
+      'version' => '0.18.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '06b90e39a36872c6ee73534e1a073f4b3132fc6a',
     ),
     'phpspec/prophecy' => 
     array (
@@ -394,6 +421,13 @@ private static $installed = array (
       array (
       ),
       'reference' => 'bafc69caeb4d49c39fd0779086c03a3738cbb389',
+    ),
+    'zendframework/zend-escaper' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '^2.6.1',
+      ),
     ),
   ),
 );
