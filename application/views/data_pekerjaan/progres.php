@@ -48,7 +48,7 @@ $CI->load->library('MyLib');
                                     <small>Anggaran  : <b><?= $Anggaran['Nama'] ?></b></small><br>
                                 </p>
                                 <a href="<?= base_url('data_pekerjaan/cetak/'.$hps['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF' style='margin-right:5px'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                <a href="<?= base_url('word_data/hps/'.$hps['Id']) ?>" target='_blank' class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                 <span class='clearfix'></span>
                                 <span class="vertical-date">
                                     <?= $CI->mylib->hari_indo($hps['Tgl']) ?> <br/>
