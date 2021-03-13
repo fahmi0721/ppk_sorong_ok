@@ -76,7 +76,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $penunjukan_peyedia['data']['Id']; ?>','penunjukan_penyedia')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen' style='margin-left:5px'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a href="<?= base_url('penunjukan_penyedia/edit/'.$penunjukan_peyedia['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen' style='margin-left:5px'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a href="<?= base_url('cetak_data/penunjukan_penyedia/'.$penunjukan_peyedia['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF' style='margin-left:5px'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a href="<?= base_url('word_data/penunjukan_penyedia/'.$penunjukan_peyedia['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($penunjukan_peyedia['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($penunjukan_peyedia['data']['Tgl']) ?></small>
@@ -107,7 +107,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $spk['data']['Id']; ?>','spk')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-right:5px' href="<?= base_url('spk/edit/'.$spk['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-right:5px' href="<?= base_url('cetak_data/spk/'.$spk['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a href="<?= base_url('word_data/spk/'.$spk['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($spk['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($spk['data']['Tgl']) ?></small>
@@ -142,7 +142,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $pphp['data']['Id']; ?>','pphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-left:5px' href="<?= base_url('pphp/edit/'.$pphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-left:5px' href="<?= base_url('cetak_data/pphp/'.$pphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a href="<?= base_url('word_data/pphp/'.$pphp['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($pphp['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($pphp['data']['Tgl']) ?></small>
