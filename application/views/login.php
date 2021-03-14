@@ -22,7 +22,7 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-                <h1 class="logo-name">PPK</h1>
+                <center><img width='200px' src='<?= base_url('public/img/sorong.png') ?>'></center>
             </div>
             <h3>Welcome to PPK SORONG</h3>
             <p>Pejabat Pembuat Komitmen (PPK) SORONG
