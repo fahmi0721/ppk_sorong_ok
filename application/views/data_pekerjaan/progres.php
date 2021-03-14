@@ -179,7 +179,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $baphp['data']['Id']; ?>','baphp')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-right:5px' href="<?= base_url('baphp/edit/'.$baphp['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-right:5px' href="<?= base_url('cetak_data/baphp/'.$baphp['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a href="<?= base_url('word_data/baphp/'.$baphp['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($baphp['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($baphp['data']['Tgl']) ?></small>
@@ -213,7 +213,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $bastb['data']['Id']; ?>','bastb')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-left:5px' href="<?= base_url('bastb/edit/'.$bastb['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-left:5px' href="<?= base_url('cetak_data/bastb/'.$bastb['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a style='margin-left:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-left:5px' href="<?= base_url('word_data/bastb/'.$bastb['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($bastb['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($bastb['data']['Tgl']) ?></small>
@@ -247,7 +247,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-left:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $ba_bayar['data']['Id']; ?>','ba_bayar')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-left:5px' href="<?= base_url('ba_bayar/edit/'.$ba_bayar['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-left:5px' href="<?= base_url('cetak_data/ba_bayar/'.$ba_bayar['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a style='margin-left:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-left:5px' href="<?= base_url('word_data/ba_bayar/'.$ba_bayar['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($ba_bayar['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($ba_bayar['data']['Tgl']) ?></small>
@@ -282,7 +282,7 @@ $CI->load->library('MyLib');
                                     <a style='margin-right:5px' href="javascript:void(0)" onclick="ShowConfirmModulLain('<?= $kwitansi['data']['Id']; ?>','kwitansi')" class="btn btn-xs btn-danger" data-toggle='tooltip' title='Hapus Dokumen'><i class='fa fa-trash-o'></i> Hapus</a>
                                     <a style='margin-right:5px' href="<?= base_url('kwitansi/edit/'.$kwitansi['data']['Id']) ?>"  class="btn btn-xs btn-warning" data-toggle='tooltip' title='Ubah Dokumen'><i class='fa fa-pencil'></i> Ubah</a>
                                     <a style='margin-right:5px' href="<?= base_url('cetak_data/kwitansi/'.$kwitansi['data']['Id']) ?>" target='_blank' class="btn btn-xs btn-primary" data-toggle='tooltip' title='Cetak Dokumen PDF'><i class='fa fa-file-pdf-o'></i> Cetak</a>
-                                    <a style='margin-right:5px' href="#" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
+                                    <a style='margin-right:5px' href="<?= base_url('word_data/kwitansi/'.$kwitansi['data']['Id']) ?>" class="btn btn-xs btn-info" data-toggle='tooltip' title='Unduh Dokumen Word'> <i class='fa fa-file-word-o'></i> Unduh</a>
                                     <span class="vertical-date">
                                         <?= $CI->mylib->hari_indo($kwitansi['data']['Tgl']) ?> <br/>
                                     <small><?= $CI->mylib->tgl_indo($kwitansi['data']['Tgl']) ?></small>

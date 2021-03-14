@@ -51,7 +51,7 @@ $CI->load->library('MyLib');
         <tr>
             <td class='text-top' width='14%'>Nomor</td>
             <td class='text-center text-top' width='1%'>:</td>
-            <td width='50%'>PL.102/21/12/Poltekpel.Btn-2020</td>
+            <td width='50%'><?= $data['NoSurat'] ?></td>
             <td width='35%' colspan='2'>Sorong, <?= $CI->mylib->tgl_indo($data['Tgl']) ?></td>
         </tr>
         <tr>
@@ -62,7 +62,7 @@ $CI->load->library('MyLib');
         <tr>
             <td class='text-top'>Perihal</td>
             <td class='text-center text-top' width='1%'>:</td>
-            <td class='text-bold'>Panitia Pemeriksaan</td>
+            <td class='text-bold'>Permintaan Pemeriksaan</td>
             <td class='text-top' width='7%'></td>
             <td class='text-top'>Kepada</td>
 

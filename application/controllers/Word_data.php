@@ -229,11 +229,44 @@ class Word_data extends CI_Controller {
 					"headers" => array("Authorization" => $this->token)
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url_baphp,$param),true);
-			$data['data'] = $response['data'][0];
-			$this->load->library('pdf');
-			$this->pdf->setPaper('A4', 'potrait');
-			$this->pdf->filename = "surat-baphp.pdf";
-			$this->pdf->load_view('cetak_pdf/baphp',$data);
+			$dt = $response['data'][0];
+			$pphp = json_decode($dt['DataPphp'],true);
+			$pemeriksa = json_decode($dt['DataPemeriksa'],true);
+			$spk = json_decode($pphp['DataSpk'],true);
+			$pp = json_decode($spk['DataPP'],true);
+			$Hps = json_decode($pp['DataHps'],true);
+			$Anggaran = json_decode($Hps['DataAnggaran'],true);
+			$Vendor = json_decode($pp['DataVendor'],true);
+			$Pejabat = json_decode($pemeriksa['DataPemeriksa'],true);
+			$datas = [
+                'NoSpk' => $spk['NoSpk'],
+                'NoSurat' => $dt['NoSurat'],
+                'NoSuratPphp' => $pphp['NoSurat'],
+                'Pekerjaan' => strtolower($Hps['Pekerjaan']),
+				'Tgl' => $this->mylib->tgl_indo($pphp['Tgl']),
+				'TglPphp' => $this->mylib->tgl_indo($dt['Tgl']),
+				'HariIni' => $this->mylib->hari_indo($dt['Tgl']),
+				'TglSpk' => $this->mylib->tgl_indo($spk['Tgl']),
+				'NoSk' => $pemeriksa['NoSk'],
+				'TahunAnggaran' => $Anggaran['Tahun'],
+				'TglSk' => $this->mylib->tgl_indo($pemeriksa['Tanggal']),
+				'NamaVendor' => $Vendor['Nama'],
+				'VendorNama' => $Vendor['NamaPimpinan'],
+				'VendorJabatan' => $Vendor['Jabatan'],
+				'PejabatSk0' => $Pejabat[0]['Nama'],
+				'PejabatNipSk0' => $Pejabat[0]['Nip'],
+				'PejabatSk1' => $Pejabat[1]['Nama'],
+				'PejabatNipSk1' => $Pejabat[1]['Nip'],
+				'PejabatSk2' => $Pejabat[2]['Nama'],
+				'PejabatNipSk2' => $Pejabat[2]['Nip'],
+				'PejabatSk3' => $Pejabat[3]['Nama'],
+				'PejabatNipSk3' => $Pejabat[3]['Nip'],
+            ];
+            $this->load->library('word');
+            $this->word->filename = 'baphp.docx';
+            $this->word->data = $datas;
+            $this->word->templ = "./application/docs/temp/baphp.docx";
+			$this->word->load_template();
 		}else{
 			redirect('data_pekerjaan');
 		}
@@ -247,11 +280,41 @@ class Word_data extends CI_Controller {
 					"headers" => array("Authorization" => $this->token)
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url_bastb,$param),true);
-			$data['data'] = $response['data'][0];
-			$this->load->library('pdf');
-			$this->pdf->setPaper('A4', 'potrait');
-			$this->pdf->filename = "surat-bastb.pdf";
-			$this->pdf->load_view('cetak_pdf/bastb',$data);
+			$dt = $response['data'][0];
+			$baphp = json_decode($dt['DataBaPhp'],true);
+			$pphp = json_decode($baphp['DataPphp'],true);
+			$spk = json_decode($pphp['DataSpk'],true);
+			$pp = json_decode($spk['DataPP'],true);
+			$Hps = json_decode($pp['DataHps'],true);
+			$Anggaran = json_decode($Hps['DataAnggaran'],true);
+			$Vendor = json_decode($pp['DataVendor'],true);
+			$Pejabat = json_decode($dt['DataPejabat'],true);
+			$datas = [
+                'NoSpk' => $spk['NoSpk'],
+                'NoSurat' => $dt['NoSurat'],
+                'NoBaphp' => $baphp['NoSurat'],
+                'WaktuKerjaTerbilang' => $this->mylib->Terbilang($spk['WaktuKerja']),
+                'TglDari' => $this->mylib->tgl_indo($spk['TglDari']),
+                'TglSampai' => $this->mylib->tgl_indo($spk['TglSampai']),
+                'TglBaphp' => $this->mylib->tgl_indo($baphp['Tgl']),
+                'TglSpk' => $this->mylib->tgl_indo($spk['Tgl']),
+                'HariIni' => $this->mylib->hari_indo($dt['Tgl']),
+                'Pejabat' => $Pejabat['Nama'],
+                'PejabatNip' => $Pejabat['Nip'],
+                'PejabatDeskripsiPekerjaan' => $Pejabat['DeskripsiJabatan'],
+                'PejabatAlamat' => $Pejabat['Alamat'],
+                'VendorNama' => $Vendor['NamaPimpinan'],
+                'VendorJabatan' => $Vendor['Jabatan'],
+                'VendorAlamat' => $Vendor['Alamat'],
+                'NamaVendor' => $Vendor['Nama'],
+                'WaktuKerja' => $spk['WaktuKerja'],
+                'Pekerjaan' => strtolower($Hps['Pekerjaan']),
+            ];
+            $this->load->library('word');
+            $this->word->filename = 'bastb.docx';
+            $this->word->data = $datas;
+            $this->word->templ = "./application/docs/temp/bastb.docx";
+			$this->word->load_template();
 		}else{
 			redirect('data_pekerjaan');
 		}
@@ -265,11 +328,49 @@ class Word_data extends CI_Controller {
 					"headers" => array("Authorization" => $this->token)
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url_ba_bayar,$param),true);
-			$data['data'] = $response['data'][0];
-			$this->load->library('pdf');
-			$this->pdf->setPaper('A4', 'potrait');
-			$this->pdf->filename = "surat-ba-bayar.pdf";
-			$this->pdf->load_view('cetak_pdf/ba_bayar',$data);
+			$dt = $response['data'][0];
+			$ba_bayar = json_decode($dt['DataBastb'],true);
+			$baphp = json_decode($ba_bayar['DataBaPhp'],true);
+			$pphp = json_decode($baphp['DataPphp'],true);
+			$spk = json_decode($pphp['DataSpk'],true);
+			$pp = json_decode($spk['DataPP'],true);
+			$Hps = json_decode($pp['DataHps'],true);
+			$Anggaran = json_decode($Hps['DataAnggaran'],true);
+			$Vendor = json_decode($pp['DataVendor'],true);
+			$Pejabat = json_decode($dt['DataPejabat'],true);
+			$datas = [
+                'NoSpk' => $spk['NoSpk'],
+                'NoSurat' => $dt['NoSurat'],
+                'NoBaphp' => $baphp['NoSurat'],
+                'TglBaphp' => $this->mylib->tgl_indo($baphp['Tgl']),
+                'TglSpk' => $this->mylib->tgl_indo($spk['Tgl']),
+                'HariIni' => $this->mylib->hari_indo($dt['Tgl']),
+                'Pejabat' => $Pejabat['Nama'],
+                'PejabatNip' => $Pejabat['Nip'],
+                'PejabatJabatan' => $Pejabat['Jabatan'],
+                'PejabatAlamat' => $Pejabat['Alamat'],
+                'VendorNama' => $Vendor['NamaPimpinan'],
+                'VendorJabatan' => $Vendor['Jabatan'],
+                'VendorAlamat' => $Vendor['Alamat'],
+                'NamaVendor' => $Vendor['Nama'],
+                'AnggaranNama' => $Anggaran['Nama'],
+                'TahunAnggaran' => $Anggaran['Tahun'],
+                'TglAnggaran' => $this->mylib->tgl_indo($Anggaran['Tanggal']),
+                'Pekerjaan' => strtolower($Hps['Pekerjaan']),
+				'HargaSepakat' => $this->mylib->rupiah1($pp['HargaSepakat']),
+                'HargaSepakatTerbilang' => $this->mylib->Terbilang($pp['HargaSepakat']),
+                'Bank' => $Vendor['Bank'],
+                'AtasNama' => $Vendor['AnBank'],
+                'NoRek' => $Vendor['NoRek'],
+                'DIbuatdi' => $dt['Dibuatdi'],
+                'Tgl' => $this->mylib->tgl_indo($dt['Tgl']),
+
+            ];
+            $this->load->library('word');
+            $this->word->filename = 'babayar.docx';
+            $this->word->data = $datas;
+            $this->word->templ = "./application/docs/temp/ba_bayar.docx";
+			$this->word->load_template();
 		}else{
 			redirect('data_pekerjaan');
 		}
@@ -284,11 +385,39 @@ class Word_data extends CI_Controller {
 					"headers" => array("Authorization" => $this->token)
 			);
 			$response = json_decode($this->myGuzzle->request_get($this->api_url_kwitansi,$param),true);
-			$data['data'] = $response['data'][0];
-			$this->load->library('pdf');
-			$this->pdf->setPaper('A4', 'potrait');
-			$this->pdf->filename = "surat-ba-bayar.pdf";
-			$this->pdf->load_view('cetak_pdf/kwitansi',$data);
+			$dt = $response['data'][0];
+			$ba_bayar = json_decode($dt['DataBaBayar'],true);
+			$bastb = json_decode($ba_bayar['DataBastb'],true);
+			$baphp = json_decode($bastb['DataBaPhp'],true);
+			$pphp = json_decode($baphp['DataPphp'],true);
+			$spk = json_decode($pphp['DataSpk'],true);
+			$pp = json_decode($spk['DataPP'],true);
+			$Hps = json_decode($pp['DataHps'],true);
+			$Anggaran = json_decode($Hps['DataAnggaran'],true);
+			$Vendor = json_decode($pp['DataVendor'],true);
+			$Pejabat = json_decode($dt['DataPejabat'],true);
+			$PejabatTj = json_decode($dt['DataPejabatTj'],true);
+			$datas = [
+                'NoBukti' => $dt['NoBukti'],
+                'Tgl' => $this->mylib->tgl_indo($dt['Tgl']),
+                'TahunAnggaran' => $this->mylib->tgl_indo($Anggaran['Tahun']),
+                'Pekerjaan' => strtolower($Hps['Pekerjaan']),
+				'HargaSepakat' => $this->mylib->rupiah1($pp['HargaSepakat']),
+                'HargaSepakatTerbilang' => $this->mylib->Terbilang($pp['HargaSepakat']),
+                'Pejabat' => $Pejabat['Nama'],
+                'PejabatNip' => $Pejabat['Nip'],
+                'PejabatTj' => $PejabatTj['Nama'],
+                'PejabatTjNip' => $PejabatTj['Nip'],
+				'VendorNama' => $Vendor['NamaPimpinan'],
+                'VendorJabatan' => $Vendor['Jabatan'],
+                'VendorAlamat' => $Vendor['Alamat'],
+                'NamaVendor' => $Vendor['Nama'],
+            ];
+            $this->load->library('word');
+            $this->word->filename = 'kwitansi.docx';
+            $this->word->data = $datas;
+            $this->word->templ = "./application/docs/temp/kwitansi.docx";
+			$this->word->load_template();
 		}else{
 			redirect('data_pekerjaan');
 		}

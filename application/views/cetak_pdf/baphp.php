@@ -50,6 +50,7 @@ $CI->load->library('MyLib');
         $pphp = json_decode($data['DataPphp'],true);
         $spk = json_decode($pphp['DataSpk'],true);
         $pp = json_decode($spk['DataPP'],true);
+        $hps = json_decode($pp['DataHps'],true);
         $vendor = json_decode($pp['DataVendor'],true);
         $pemeriksa = json_decode($data['DataPemeriksa'],true);
 
@@ -71,7 +72,7 @@ $CI->load->library('MyLib');
         </ul>
     </p>
     <p class='text-justify'>
-    bahwa sehubungan pekerjaan pemeliharaan kelas sorong sesuai SPK Nomor : <?= $spk['NoSpk'] ?> tanggal <?= $CI->mylib->tgl_indo($spk['Tgl']) ?> dan setelah dilakukan pemeriksaan dan penilaian oleh PIHAK KESATU, dengan ini menyatakan sebagai berikut:
+    bahwa sehubungan pekerjaan <?= $hps['Pekerjaan'] ?> sesuai SPK Nomor : <?= $spk['NoSpk'] ?> tanggal <?= $CI->mylib->tgl_indo($spk['Tgl']) ?> dan setelah dilakukan pemeriksaan dan penilaian oleh PIHAK KESATU, dengan ini menyatakan sebagai berikut:
     </p>
     <ol style='margin-left:19px; padding:0;'>
         <li style='margin-bottom:15px;'>Semua barang hasil pengadaan tersebut yang diperiksa dan dinilai oleh PIHAK KESATU adalah sebagaimana terlampir :</li>
