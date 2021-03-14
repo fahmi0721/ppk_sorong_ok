@@ -87,6 +87,7 @@ class Word_data extends CI_Controller {
                 'TahunAnggaran' => $anggaran['Tahun'],
                 'NoAggaran' => $anggaran['Nomor'],
                 'TglAnggaran' => $this->mylib->tgl_indo($anggaran['Tanggal']),
+                'Tgl' => $this->mylib->tgl_indo($dt['Tgl']),
                 'Pejabat' => $pejabat['Nama'],
                 'Nip' => $pejabat['Nip'],
                 'HariIni' => $this->mylib->hari_indo($dt['Tgl']),

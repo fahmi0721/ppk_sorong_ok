@@ -66,7 +66,7 @@ $CI->load->library('MyLib');
             <td><?= $anggaran['Tahun'] ?></td>
         </tr>
         <tr>
-            <td class='text-right' width='70%' valign='top'>Nomor bukti</td>
+            <td class='text-right' width='70%' valign='top'>Nomor <br>bukti</td>
             <td width='10%' class='text-center' valign='top'>:</td>
             <td><?= $data['NoBukti'] ?></td>
         </tr>
