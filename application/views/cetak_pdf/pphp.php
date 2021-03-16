@@ -142,7 +142,7 @@ $CI->load->library('MyLib');
                 Badan Layanan Umum (BLU)
                 <br><br><br><br><br><br><br>
                 <u><?= $pejabat['Nama'] ?></u><br>
-                <?= $pejabat['Nip'] ?>
+                NIK. <?= $pejabat['Nip'] ?>
                 
             </td>
         </tr>
