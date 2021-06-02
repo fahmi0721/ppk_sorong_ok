@@ -35,6 +35,16 @@
         <li <?php if($this->uri->segment(1) === "data_pekerjaan"){ echo "class='active'"; } ?>>
             <a href="<?= base_url('data_pekerjaan/') ?>"><i class="fa fa-suitcase"></i> <span class="nav-label">Data Pekerjaan / HPS</span> </a>
         </li>
+
+
+        <li <?php $arr = array("surat_penunjukan","pl_undangan","pl_penawaran"); if(in_array($this->uri->segment(1), $arr)){ echo "class='active'"; } ?>>
+            <a href="#"><i class="fa fa-building"></i> <span class="nav-label">Penunjukan Langsung</span><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li <?php if($this->uri->segment(1) === "surat_penunjukan"){ echo "class='active'"; } ?>><a href="<?= base_url('surat_penunjukan/') ?>">Surat Penjukan</a></li>
+                <li <?php if($this->uri->segment(1) === "pl_undangan"){ echo "class='active'"; } ?>><a href="<?= base_url('pl_undangan/') ?>">Undangan Penawaran</a></li>
+                <li <?php if($this->uri->segment(1) === "pl_penawaran"){ echo "class='active'"; } ?>><a href="<?= base_url('pl_penawaran/') ?>">Surat Penawaran</a></li>
+            </ul>
+        </li>
     </ul>
 
 </div>

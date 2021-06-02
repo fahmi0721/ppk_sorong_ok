@@ -12,6 +12,7 @@
     <link href="<?= base_url('public/font-awesome/css/font-awesome.css') ?>" rel="stylesheet">
     <!-- datepicker -->
     <link href="<?= base_url('public/css/plugins/datapicker/datepicker3.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('public/css/plugins/datetimepicker/bootstrap-datetimepicker.min.css') ?>" rel="stylesheet">
 
     <!-- CSS dataTable -->
     <link href="<?= base_url('public/css/plugins/dataTables/datatables.min.css') ?>" rel="stylesheet">
@@ -26,11 +27,15 @@
 
     <!--  Jquery -->
     <script src="<?= base_url('public/js/jquery-3.1.1.min.js') ?>"></script>
+   
+
     <!-- Datepicker -->
     <script src="<?= base_url('public/js/plugins/datapicker/bootstrap-datepicker.js') ?>"></script>
+    <script src="<?= base_url('public/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js') ?>"></script>
 
     <!-- Select2 -->
     <script src="<?= base_url('public/js/plugins/select2/select2.full.min.js') ?>"></script>
+     
    
 
 </head>
