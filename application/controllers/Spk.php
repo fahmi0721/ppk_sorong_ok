@@ -77,7 +77,9 @@ class Spk extends CI_Controller {
 			$response_penunjukan_peyedia = json_decode($this->myGuzzle->request_post($this->api_url_pp,$param_penunjukan_peyedia),true);
 			unset($datas['NoSuratHps']);
 			$data['pp'] = $response_penunjukan_peyedia['data'];
-
+			if(!empty($this->session->userdata('ItemData'))){
+				$this->session->set_userdata('ItemData', array());	
+			}
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
 			$this->load->view('spk/form_add',$data);
@@ -119,10 +121,41 @@ class Spk extends CI_Controller {
 	// 	echo $this->lib->SelisihWaktu("2020-11-01","2020-12-31");
 	// }
 
+	public function load_session(){
+		$this->load->model('M_Spk_bantu','m');
+		$data = $this->m->detail_data();
+		echo json_encode($data);
+	}
+	
+	public function hapus_session(){
+		$Id = $this->input->post('Id');
+		$this->load->model('M_Spk_bantu','m');
+		$this->m->hapus_data($Id);
+	}
+	
+	public function daftar_session(){
+		$this->load->library('MyLib');
+		$this->lib = new MyLib();
+		$this->load->model('M_Spk_bantu','m');
+		$data['NamaKegiatan'] = $this->input->post('NamaKegiatan');
+		$data['Volume'] = $this->lib->angka($this->input->post('Volume'));
+		$data['SatuanUkuran'] = $this->input->post('SatuanUkuran');
+		$data['HargaSatuan'] = $this->lib->angka($this->input->post('HargaSatuan'));
+		$data['UserId'] = $this->session->userdata('token');
+		$this->m->save_data($data);
+		$res['status'] = true;
+		$res['message'] = "Berhasil menambah uraian SPK";
+		echo json_encode($res);
+
+	}
+
+
 	public function simpan()
 	{	
 		$this->load->library('MyLib');
 		$this->lib = new MyLib();
+		$this->load->model('M_Spk_bantu','m');
+
 		$data['NoSuratHps'] = $this->input->post('NoSuratHps');
 		$data['NoSuratPP'] = $this->input->post('NoSuratPP');
 		$data['NoSpk'] = $this->input->post('NoSpk');
@@ -135,6 +168,11 @@ class Spk extends CI_Controller {
 		$data['TglSampai'] = $this->input->post('TglSampai');
 		$data['WaktuKerja'] = $this->lib->SelisihWaktu($data['TglDari'],$data['TglSampai']);
 		$data['KodePejabat'] = $this->input->post('KodePejabat');
+		$data['DataItem'] = json_encode($this->m->ambil_data());
+		$data['Pembulatan'] = $this->lib->angka($this->input->post('Pembulatan'));
+		$data['Ppn'] = $this->lib->angka($this->input->post('Pembulatan')) * (10/100);
+		$data['NilaiKontrak'] = $this->lib->angka($this->input->post('Pembulatan')) + $data['Ppn'];
+
 		$param= array(
 				"form_params" => $data,
 				"headers" => array("Authorization" => $this->token)

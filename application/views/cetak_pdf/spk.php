@@ -113,14 +113,60 @@ $CI->load->library('MyLib');
             <td colspan='3'>SPK ini mulai berlaku efektif terhitung sejak tanggal diterbitkannya SPK dan penyelesaian keseluruhan pekerjaan sebagaimana diatur dalam SPK ini</td>
         </tr>
         <tr>
-            <td colspan='4'>SUMBER DANA: Dibebankan atas <?= $anggaran['Nama'] ?> Tahun Anggaran <?= $anggaran['Tahun'] ?> Nomor <?= $anggaran['Nomor'] ?> Tanggal <?= $CI->mylib->tgl_indo($anggaran['Tanggal']) ?></td>
+            <td colspan='4'>SUMBER DANA: Dibebankan atas <?= $anggaran['Nama'] ?> Tahun Anggaran <?= $anggaran['Tahun'] ?> Nomor <?= $anggaran['Nomor'] ?> Tanggal <?= $CI->mylib->tgl_indo($anggaran['Tanggal']) ?> Jangka Waktu Pelaksanaan Pekerjaan: <?= $data['WaktuKerja'] ?>(<?= $CI->mylib->Terbilang($data['WaktuKerja']) ?>) hari kalender, tanggal <?= $CI->mylib->tgl_indo($data['TglDari']) ?> s.d <?= $CI->mylib->tgl_indo($data['TglSampai']) ?></td>
         </tr>
         <tr>
-            <td colspan='4'>Nilai Kontrak termasuk Pajak Pertambahan Nilai (PPN) adalah sebesar Rp. <?= $CI->mylib->rupiah1($pp['HargaSepakat']) ?>.,- (<?= $CI->mylib->Terbilang($pp['HargaSepakat']) ?>).</td>
+            <td colspan='4'>
+                <table width="100%" style="font-size:12px" border='1' cellpadding="4" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Volume</th>
+                        <th>Satuan<br>Ukuran</th>
+                        <th>Harga Satuan<br>Rp.</th>
+                        <th>Total<br>Rp.</th>
+                    </tr>
+                    <?php
+                        $res = json_decode($data['DataItem'],true);
+                        $No=0;
+                        $dTot =0;
+                        foreach($res as $key => $Item){
+                            $No++;
+                            $Total = $Item['Volume'] * $Item['HargaSatuan'];
+                            $dTot = $dTot + $Total;
+                    ?>
+                    <tr>
+                        <td align="center"><?= $No; ?></td>
+                        <td><?= $Item['NamaKegiatan'] ?></td>
+                        <td align="center"><?= $Item['Volume'] ?></td>
+                        <td align="center"><?= $Item['SatuanUkuran'] ?></td>
+                        <td>Rp. <?= $CI->mylib->rupiah1($Item['HargaSatuan']); ?></td>
+                        <td>Rp. <?= $CI->mylib->rupiah1($Total); ?></td>
+                    </tr>
+                    <?php } ?>
+                    <tr>
+                        <th colspan='5' align="right">JUMLAH</th>
+                        <th>Rp. <?= $CI->mylib->rupiah1($dTot); ?></th>
+                    </tr>
+                    <tr>
+                        <th colspan='5' align="right">PEMBULATAN</th>
+                        <th>Rp. <?= $CI->mylib->rupiah1($data['Pembulatan']); ?></th>
+                    </tr>
+                    <tr>
+                        <th colspan='5' align="right">PPN</th>
+                        <th>Rp. <?= $CI->mylib->rupiah1($data['Ppn']); ?></th>
+                    </tr>
+                    <tr>
+                        <th colspan='5' align="right">Nilai Kontrak</th>
+                        <th>Rp. <?= $CI->mylib->rupiah1($data['NilaiKontrak']); ?></th>
+                    </tr>
+                </table>
+            </td>
         </tr>
         <tr>
-            <td colspan='4'>WAKTU PELAKSANAAN PEKERJAAN: <?= $data['WaktuKerja'] ?>(<?= $CI->mylib->Terbilang($data['WaktuKerja']) ?>) hari kalender, tanggal <?= $CI->mylib->tgl_indo($data['TglDari']) ?> s.d <?= $CI->mylib->tgl_indo($data['TglSampai']) ?></td>
+            <th align='justify' colspan='4'>TERBILANG : <?= $CI->mylib->terbilang($data['NilaiKontrak']); ?></th>
         </tr>
+        
         <tr>
             <td colspan='4'>INSTRUKSI KEPADA PENYEDIA: Penagihan hanya dapat dilakukan setelah penyelesaian pekerjaan yang diperintahkan dalam SPK ini dan dibuktikan dengan Berita Acara Serah Terima. Jika pekerjaan tidak dapat diselesaikan dalam jangka waktu pelaksanaan pekerjaan karena kesalahan atau kelalaian Penyedia maka Penyedia berkewajiban untuk membayar denda kepada PPK sebesar 1/1000 (satu per seribu) dari nilai SPK atau nilai bagian SPK untuk setiap hari keterlambatan.</td>
         </tr>

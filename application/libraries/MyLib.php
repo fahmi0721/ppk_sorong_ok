@@ -8,7 +8,10 @@ class MyLib {
         
     }
 
-	
+	public function angka($str){
+		$str = preg_replace( '/[^0-9]/', '', $str );
+		return $str;
+	}
 
 
     //====== FUNGSI TANGGAL INDONESIA ===///

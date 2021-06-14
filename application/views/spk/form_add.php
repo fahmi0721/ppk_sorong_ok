@@ -96,10 +96,50 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
-                            
-
-                            
-
+                            <hr>
+                            <h5>URAIAN SPK</h5>
+                            <div class="form-group">
+                                <label>Nama Kegiatan</label> 
+                                <input type="text" placeholder="Enter Nama Kegiatan" autocomplete=off name='NamaKegiatan' id='NamaKegiatan' class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Volume</label> 
+                                <input type="text" onkeyup="rupiah(this)" placeholder="Enter Volume" autocomplete=off name='Volume' id='Volume' class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Satuan Ukuran</label> 
+                                <input type="text" placeholder="Enter Satuan Ukuran" autocomplete=off name='SatuanUkuran' id='SatuanUkuran' class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Harga Satuan</label> 
+                                <input type="text" onkeyup="rupiah(this)" placeholder="Enter Harga Satuan" autocomplete=off name='HargaSatuan' id='HargaSatuan' class="form-control">
+                            </div>
+                            <div>
+                                <button id="BtnTambah" class="btn btn-sm btn-primary float-right m-t-n-xs" type="button"><i class='fa fa-plus'></i> Tambah</button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <table class='table table-striped table-bordered'>
+                                    <thead>
+                                        <tr>
+                                            <th width="5%" class="text-center">No</th>
+                                            <th class="text-center">Nama Kegiatan</th>
+                                            <th class="text-center">Volume</th>
+                                            <th class="text-center">Satuan Ukuran</th>
+                                            <th class="text-center">Harga Satuan</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="iData"></tbody>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label>Pembulatan</label> 
+                                <input type="text" onkeyup="rupiah(this)" placeholder="Enter Harga Satuan" autocomplete=off name='Pembulatan' id='Pembulatan' class="form-control">
+                            </div>
+                            <input type="hidden" id="CekItem" value=0>
                             <div>
                                 <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><i class='fa fa-check-square'></i> Submit</button>
                             </div>
