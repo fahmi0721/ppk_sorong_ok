@@ -127,7 +127,9 @@ $CI->load->library('MyLib');
                         <th>Total<br>Rp.</th>
                     </tr>
                     <?php
+
                         $res = json_decode($data['DataItem'],true);
+                        if(!empty($res)){
                         $No=0;
                         $dTot =0;
                         foreach($res as $key => $Item){
@@ -143,7 +145,7 @@ $CI->load->library('MyLib');
                         <td>Rp. <?= $CI->mylib->rupiah1($Item['HargaSatuan']); ?></td>
                         <td>Rp. <?= $CI->mylib->rupiah1($Total); ?></td>
                     </tr>
-                    <?php } ?>
+                    <?php } } ?>
                     <tr>
                         <th colspan='5' align="right">JUMLAH</th>
                         <th>Rp. <?= $CI->mylib->rupiah1($dTot); ?></th>
