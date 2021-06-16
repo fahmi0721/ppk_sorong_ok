@@ -129,9 +129,10 @@ $CI->load->library('MyLib');
                     <?php
 
                         $res = json_decode($data['DataItem'],true);
-                        if(!empty($res)){
                         $No=0;
                         $dTot =0;
+                        if(!empty($res)){
+                        
                         foreach($res as $key => $Item){
                             $No++;
                             $Total = $Item['Volume'] * $Item['HargaSatuan'];
