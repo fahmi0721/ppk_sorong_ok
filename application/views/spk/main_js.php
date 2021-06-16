@@ -1,8 +1,9 @@
 <script>
     $(document).ready(function(){
-        <?php if($this->uri->segment(2) == "tambah" OR $this->uri->segment(2) == "edit"){ ?>
+        <?php if($this->uri->segment(2) == "tambah"){ ?>
             LoadIdataItem();
-
+        <?php }else if($this->uri->segment(2) == "edit"){ ?>
+            LoadIdataItemUpdate();
         <?php }else{ ?>
             ShowdataTable();
         <?php } ?>
@@ -121,7 +122,57 @@
                     html += "<th>"+formatRupiah(tData,0)+"</th>";
                     html += "<td></td>";
                     html += "</tr>";
+                    
                     $("#Pembulatan").val(formatAngka(tData,0));
+                    $("#iData").html(html);
+                }else{
+                    $("#Pembulatan").val(0);
+                    $("#CekItem").val(0);
+                    $("#iData").html(html);
+                }
+            },
+            error : function(er){
+                console.log(er);
+            }
+        })
+
+
+    }
+
+    function LoadIdataItemUpdate(){
+        var html ="<tr><td colspan='7' class='text-center'>Data Belum Di Input</td></tr>";
+        $.ajax({
+            type : "POST",
+            url : "<?= base_url('spk/load_session'); ?>",
+            success: function(r){
+                var response = JSON.parse(r);
+                console.log(response);
+                if(response['jml'] > 0){
+                    $("#CekItem").val(1);
+                    html = "";
+                    var No=1;
+                    var tData=0;
+                    for(var i =0; i < response['data'].length; i++){
+                        var iData = response['data'][i];
+                        var Total = parseFloat(iData['Volume']) * parseFloat(iData['HargaSatuan']);
+                        tData = tData + Total;
+                        html += "<tr>";
+                        html += "<td class='text-center'>"+No+"</td>";
+                        html += "<td>"+iData['NamaKegiatan']+"</td>";
+                        html += "<td>"+formatAngka(iData['Volume'],0)+"</td>";
+                        html += "<td>"+iData['SatuanUkuran']+"</td>";
+                        html += "<td>"+formatRupiah(iData['HargaSatuan'],0)+"</td>";
+                        html += "<td>"+formatRupiah(Total,0)+"</td>";
+                        html += "<td><a class='btn btn-danger btn-xs' onclick=\"DeleteItem('"+iData['Id']+"')\" href='javascript:void(0)'><i class='fa fa-trash'></i></a></td>";
+                        html += "</tr>";
+                        No++
+                    }
+                    html += "<tr>";
+                    html += "<th class='text-center' colspan='5'>Total</th>";
+                    html += "<th>"+formatRupiah(tData,0)+"</th>";
+                    html += "<td></td>";
+                    html += "</tr>";
+                    
                     $("#iData").html(html);
                 }else{
                     $("#Pembulatan").val(0);
@@ -173,7 +224,11 @@
     })
 
     function DaftarSessionItem(){
-        var iData = $("#FormDataTambah").serialize();
+        <?php if($this->uri->segment(2) == "tambah"){  ?>
+            var iData = $("#FormDataTambah").serialize();
+        <?php }else{ ?>
+            var iData = $("#FormDataUpdate").serialize();
+        <?php } ?>
         $.ajax({
             type : "POST",
             url : "<?= base_url('spk/daftar_session'); ?>",

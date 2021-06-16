@@ -80,6 +80,7 @@ class Spk extends CI_Controller {
 			if(!empty($this->session->userdata('ItemData'))){
 				$this->session->set_userdata('ItemData', array());	
 			}
+			$this->ClearSpkBantu();
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
 			$this->load->view('spk/form_add',$data);
@@ -89,9 +90,18 @@ class Spk extends CI_Controller {
 		}
 	}
 
+	public function ClearSpkBantu(){
+		$Token = $this->session->userdata("token");
+		$this->load->model('M_Spk_bantu','m');
+		$data = $this->m->delete_by_token($Token);
+	}
+
 	public function edit()
 	{	
 		if($this->uri->segment(3) != ""){
+			$this->load->library('MyLib');
+			$this->lib = new MyLib();
+			$this->ClearSpkBantu();
 			$data['Id'] = $this->uri->segment(3);
 			$param= array(
 					"query" => $data,
@@ -106,6 +116,10 @@ class Spk extends CI_Controller {
 			$data['pejabat'] = $response_pejabat['data'];
 			$data['pp'] = json_decode($data['spk']['DataPP'],true);
 			$data['hps'] = json_decode($data['pp']['DataHps'],true);
+			if(!empty($data['spk']['DataItem'])){
+				$this->LastUpdateSpkBantu($data['spk']['DataItem']);
+			}
+			$data['spk']['Pembulatan'] = $this->lib->rupiah1($data['spk']['Pembulatan']);
 			$this->load->view('_template/header');
 			$this->load->view('_template/sidebar');
 			$this->load->view('spk/form_edit',$data);
@@ -113,6 +127,21 @@ class Spk extends CI_Controller {
 		}else{
 			redirect('/data_pekerjaan');
 		}
+	}
+
+	public function LastUpdateSpkBantu($data){
+		$data = json_decode($data,true);
+		$this->load->model('M_Spk_bantu','m');
+		foreach($data as $iData){
+			$datas['NamaKegiatan'] = $iData['NamaKegiatan'];
+			$datas['Volume'] = $iData['Volume'];
+			$datas['SatuanUkuran'] = $iData['SatuanUkuran'];
+			$datas['HargaSatuan'] = $iData['HargaSatuan'];
+			$datas['UserId'] = $this->session->userdata('token');
+			$this->m->save_data($datas);
+		}
+		return true;
+		
 	}
 
 	// public function coba(){
@@ -183,8 +212,11 @@ class Spk extends CI_Controller {
 
 	public function update()
 	{	
+
 		$this->load->library('MyLib');
 		$this->lib = new MyLib();
+		$this->load->model('M_Spk_bantu','m');
+
 		$data['Id'] = $this->input->post('Id');
 		$data['NoSuratHps'] = $this->input->post('NoSuratHps');
 		$data['NoSuratPP'] = $this->input->post('NoSuratPP');
@@ -198,6 +230,10 @@ class Spk extends CI_Controller {
 		$data['TglSampai'] = $this->input->post('TglSampai');
 		$data['WaktuKerja'] = $this->lib->SelisihWaktu($data['TglDari'],$data['TglSampai']);
 		$data['KodePejabat'] = $this->input->post('KodePejabat');
+		$data['DataItem'] = json_encode($this->m->ambil_data());
+		$data['Pembulatan'] = $this->lib->angka($this->input->post('Pembulatan'));
+		$data['Ppn'] = $this->lib->angka($this->input->post('Pembulatan')) * (10/100);
+		$data['NilaiKontrak'] = $this->lib->angka($this->input->post('Pembulatan')) + $data['Ppn'];
 		$param= array(
 				"form_params" => $data,
 				"headers" => array("Authorization" => $this->token)

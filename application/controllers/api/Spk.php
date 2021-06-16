@@ -172,6 +172,10 @@ class Spk extends REST_Controller {
                 $res['WaktuKerja'] = $this->put('WaktuKerja');
                 $res['TglDari'] = $this->put('TglDari');
                 $res['TglSampai'] = $this->put('TglSampai');
+                $res['DataItem'] = $this->put('DataItem');
+                $res['Pembulatan'] = $this->put('Pembulatan');
+                $res['Ppn'] = $this->put('Ppn');
+                $res['NilaiKontrak'] = $this->put('NilaiKontrak');
                 $res['KodePejabat'] = $this->put('KodePejabat');
                 $res['DataPejabat'] = $this->m->getDataPejabat($this->put('KodePejabat'));
                 $res['UserId'] = $this->UserId;

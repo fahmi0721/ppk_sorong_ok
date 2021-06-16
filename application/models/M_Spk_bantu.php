@@ -32,4 +32,10 @@ class M_Spk_bantu extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    function delete_by_token($Token){
+        $this->db->where('UserId', $Token);
+        $this->db->delete("ppk_spk_bantu");
+        return $this->db->affected_rows();
+    }
+
 }
