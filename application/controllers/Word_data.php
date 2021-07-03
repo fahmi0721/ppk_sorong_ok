@@ -424,7 +424,52 @@ class Word_data extends CI_Controller {
 		}
 	}
 
-	
+
+
+	/** PENUNJUKAN LANGSUNG */
+	public function pl_penawaran(){
+		if(!empty($this->uri->segment(3))){
+			$Id = $this->uri->segment(3);
+			$this->load->model("m_pl_undangan","m");
+			$dt = $this->m->detail_data($Id);
+			$Kegiatans = json_decode($dt->Kegiatan,true);
+			$Ttd = json_decode($dt->Pejabat,true);
+			$datas = [
+                'NoSurat' => $dt->NoSurat,
+                'TglSurat' => $this->mylib->tgl_indo($dt->TglSurat),
+                'Kepada' => $dt->Kepada,
+                'AlamatVendor' => $dt->AlamatVendor,
+                'KotaVendor' => $dt->KotaVendor,
+                'Perihal' => $dt->Perihal,
+                'Lampiran' => $dt->Lampiran,
+                'Pekerjaan' => $dt->Pekerjaan,
+                'LikPekerjaan' => $dt->LikPekerjaan,
+                'NilaiHps' => $dt->NilaiHps,
+                'SumberDana' => $dt->SumberDana,
+                'TglKegiatan1' => $this->mylib->hari_indo($Kegiatans[0]).", ".$this->mylib->tgl_indo($Kegiatans[0]),
+                'TglKegiatan2' => $this->mylib->hari_indo($Kegiatans[1]).", ".$this->mylib->tgl_indo($Kegiatans[1]),
+                'TglKegiatan3' => $this->mylib->hari_indo($Kegiatans[2]).", ".$this->mylib->tgl_indo($Kegiatans[2]),
+                'TglKegiatan4' => $this->mylib->hari_indo($Kegiatans[3]).", ".$this->mylib->tgl_indo($Kegiatans[3]),
+				'JamKegiatan1' => $this->mylib->jam_indo($Kegiatans[0]),
+                'JamKegiatan2' => $this->mylib->jam_indo($Kegiatans[1]),
+                'JamKegiatan3' => $this->mylib->jam_indo($Kegiatans[2]),
+                'JamKegiatan4' => $this->mylib->jam_indo($Kegiatans[3]),
+                'Pejabat' => $Ttd[0],
+                'Jabatan' => $Ttd[1],
+                'Nip' => $Ttd[2],
+               
+            ];
+            $this->load->library('word');
+            $this->word->filename = 'pl_penawaran.docx';
+            $this->word->data = $datas;
+            $this->word->templ = "./application/docs/temp/pl_penawaran.docx";
+			$this->word->load_template();
+			// echo "<pre>";
+			// print_r($datas);
+		}else{
+			redirect('data_pekerjaan');
+		}
+	}
 	
 
 }

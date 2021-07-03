@@ -75,7 +75,7 @@ class Pl_undangan extends CI_Controller {
             $row[] = $field->Pekerjaan;
             $row[] = "<small>".$Kegiatan."</small>";
             $row[] = $Pejabat[0]."<br><small>Jabatan : ".$Pejabat[1]."<br>NIP : ".$Pejabat[2]."</small>";
-            $row[] = "<center><span class='btn-group'><a data-toggle='tooltip' href='".base_url()."pl_undangan/form_lampiran?Id=".$field->Id."' title='Tambah Lampiran' class='btn btn-primary btn-xs'><i class='fa fa-plus'></i></a><a data-toggle='tooltip' href='".base_url()."pl_undangan/edit?Id=".$field->Id."' title='Ubah Data' class='btn btn-info btn-xs'><i class='fa fa-edit'></i></a><a data-toggle='tooltip' href='javascript:void(0)' title='Hapus Data' onclick='ShowConfirm(".$field->Id.")' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></center>";
+            $row[] = "<center><span class='btn-group'><a target='_blank' data-toggle='tooltip' href='".base_url()."word_data/pl_penawaran/".$field->Id."' title='Download Dokumen' class='btn btn-primary btn-xs'><i class='fa fa-file'></i></a><a data-toggle='tooltip' href='".base_url()."pl_undangan/edit?Id=".$field->Id."' title='Ubah Data' class='btn btn-info btn-xs'><i class='fa fa-edit'></i></a><a data-toggle='tooltip' href='javascript:void(0)' title='Hapus Data' onclick='ShowConfirm(".$field->Id.")' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></center>";
             $data[] = $row;
         }
  

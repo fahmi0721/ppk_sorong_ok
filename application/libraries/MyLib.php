@@ -13,6 +13,10 @@ class MyLib {
 		return $str;
 	}
 
+	public function jam_indo($tgl){
+		$timestamp = strtotime($tgl);
+		return date("h.i A", $timestamp);
+	}
 
     //====== FUNGSI TANGGAL INDONESIA ===///
 	public function tgl_indo($tgl){
