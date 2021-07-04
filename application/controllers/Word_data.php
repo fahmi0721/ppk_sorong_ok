@@ -149,6 +149,34 @@ class Word_data extends CI_Controller {
 			$Anggaran = json_decode($Hps['DataAnggaran'],true);
 			$Vendor = json_decode($pp['DataVendor'],true);
 			$Pejabat = json_decode($dt['DataPejabat'],true);
+			
+			$Itemsd = json_decode($dt['DataItem'],true);
+			$clonr = array();
+			$clonrValue = array();
+			$No = 1;
+			$Jumlah =0;
+			foreach($Itemsd as $key => $iData){
+				$clonr['No'] =$No;
+				foreach($iData as $kysData => $values){
+					if($kysData == "NamaKegiatan"){
+						$clonr['Kegiatan'] = $values;
+					}elseif($kysData == "Volume"){
+						$clonr['Vol'] = $this->mylib->rupiah1($values);
+					}elseif($kysData == "SatuanUkuran"){
+						$clonr['Satuan'] = $values;
+					}elseif($kysData == "HargaSatuan"){
+						$clonr['Harga'] = $this->mylib->rupiah1($values);
+					}
+				}
+				$ttl = $iData['HargaSatuan'] * $iData['Volume'];
+				$clonr['Total'] = $this->mylib->rupiah1($ttl);
+				$clonrValue[] = $clonr;
+				$Jumlah = $Jumlah + $ttl;
+				$No++;
+			}
+			$iClonerow = array("No"=>$clonrValue);
+			
+
 			$datas = [
                 'NoSpk' => $dt['NoSpk'],
                 'NoSuratUndangan' => $dt['NoSuratUndangan'],
@@ -170,14 +198,19 @@ class Word_data extends CI_Controller {
                 'TahunAnggaran' => $Anggaran['Tahun'],
                 'NoAnggaran' => $Anggaran['Nomor'],
 				'TglAnggaran' => $this->mylib->tgl_indo($Anggaran['Tanggal']),
-                'HargaSepakat' => $this->mylib->rupiah1($pp['HargaSepakat']),
-                'TerbilangSepakat' => $this->mylib->Terbilang($pp['HargaSepakat']),
+                'NilaiKontrak' => $this->mylib->rupiah1($dt['NilaiKontrak']),
+                'Terbilang' => $this->mylib->Terbilang($dt['NilaiKontrak']),
                 'Pejabat' => $Pejabat['Nama'],
-                'PejabatNip' => $Pejabat['Nip']
+                'PejabatNip' => $Pejabat['Nip'],
+				'Jumlah' => $this->mylib->rupiah1($Jumlah),
+				'Pembulatan' => $this->mylib->rupiah1($dt['Pembulatan']),
+				'Ppn' => $this->mylib->rupiah1($dt['Ppn']),
             ];
             $this->load->library('word');
             $this->word->filename = 'spk.docx';
             $this->word->data = $datas;
+			$this->word->cloneRow = $iClonerow;
+
             $this->word->templ = "./application/docs/temp/spk.docx";
 			$this->word->load_template();
 		}else{
@@ -470,6 +503,53 @@ class Word_data extends CI_Controller {
 			redirect('data_pekerjaan');
 		}
 	}
+
+	// /** PENUNJUKAN LANGSUNG */
+	// public function coba(){
+	// 	if(!empty($this->uri->segment(3))){
+	// 		$datas = array();
+	// 		$Id = $this->uri->segment(3);
+	// 		$this->load->model("m_pl_undangan","m");
+	// 		$dt = $this->m->detail_data($Id);
+	// 		$Kegiatans = json_decode($dt->Kegiatan,true);
+	// 		$Ttd = json_decode($dt->Pejabat,true);
+	// 		$datas = [
+    //             'NoSurat' => $dt->NoSurat,
+    //             'TglSurat' => $this->mylib->tgl_indo($dt->TglSurat),
+    //             'Kepada' => $dt->Kepada,
+    //             'AlamatVendor' => $dt->AlamatVendor,
+    //             'KotaVendor' => $dt->KotaVendor,
+    //             'Perihal' => $dt->Perihal,
+    //             'Lampiran' => $dt->Lampiran,
+    //             'Pekerjaan' => $dt->Pekerjaan,
+    //             'LikPekerjaan' => $dt->LikPekerjaan,
+    //             'NilaiHps' => $dt->NilaiHps,
+    //             'SumberDana' => $dt->SumberDana,
+    //             'TglKegiatan1' => $this->mylib->hari_indo($Kegiatans[0]).", ".$this->mylib->tgl_indo($Kegiatans[0]),
+    //             'TglKegiatan2' => $this->mylib->hari_indo($Kegiatans[1]).", ".$this->mylib->tgl_indo($Kegiatans[1]),
+    //             'TglKegiatan3' => $this->mylib->hari_indo($Kegiatans[2]).", ".$this->mylib->tgl_indo($Kegiatans[2]),
+    //             'TglKegiatan4' => $this->mylib->hari_indo($Kegiatans[3]).", ".$this->mylib->tgl_indo($Kegiatans[3]),
+	// 			'JamKegiatan1' => $this->mylib->jam_indo($Kegiatans[0]),
+    //             'JamKegiatan2' => $this->mylib->jam_indo($Kegiatans[1]),
+    //             'JamKegiatan3' => $this->mylib->jam_indo($Kegiatans[2]),
+    //             'JamKegiatan4' => $this->mylib->jam_indo($Kegiatans[3]),
+    //             'Pejabat' => $Ttd[0],
+    //             'Jabatan' => $Ttd[1],
+    //             'Nip' => $Ttd[2],
+               
+    //         ];
+			
+    //         $this->load->library('word');
+    //         $this->word->filename = 'coba.docx';
+    //         $this->word->data = $datas;
+    //         $this->word->templ = "./application/docs/temp/coba.docx";
+	// 		$this->word->load_template();
+	// 		// echo "<pre>";
+	// 		// print_r($datas);
+	// 	}else{
+	// 		redirect('data_pekerjaan');
+	// 	}
+	// }
 	
 
 }

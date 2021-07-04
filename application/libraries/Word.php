@@ -21,6 +21,7 @@ class Word extends PhpWord{
     public $filename;
     public $templ;
     public $data;
+    public $cloneRow;
     public function __construct(){
         parent::__construct();
         $this->filename = "laporan.pdf";
@@ -48,7 +49,16 @@ class Word extends PhpWord{
         foreach($this->data as $key => $val){
             $document->setValue($key,$val);
         }
-		
+		// $values = [
+        //     ['userId' => 1, 'konten' => 'Batman', 'userAddress' => 'Gotham City'],
+        //     ['userId' => 2, 'konten' => 'Superman', 'userAddress' => 'Metropolis'],
+        // ];
+        // $document->cloneRowAndSetValues('konten', $values);
+        if(!empty($this->cloneRow)){
+            foreach($this->cloneRow as $key => $val){
+                $document->cloneRowAndSetValues($key, $val);
+            }
+        }
 		
         $document->saveAs($this->filename);
 		
