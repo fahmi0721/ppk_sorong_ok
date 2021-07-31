@@ -62,7 +62,14 @@ class Pl_penawaran extends CI_Controller {
             $row[] = $field->Vendor."<br><small>Pimpinan: ".$field->NamaVendor."</small>";
             $row[] = $field->NoPl;
             $row[] = $field->Pekerjaan."<br><small>Waktu Pelaksanaan : ".$field->WaktuPelaksanaan."<br>Masa Berlaku : ".$field->MasaBerlaku."</small>";
-            $row[] = "<center><span class='btn-group'><a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_lampiran?Id=".$field->Id."' title='Tambah Lampiran' class='btn btn-primary btn-xs'><i class='fa fa-plus'></i></a><a data-toggle='tooltip' href='".base_url()."pl_penawaran/edit?Id=".$field->Id."' title='Ubah Data' class='btn btn-info btn-xs'><i class='fa fa-edit'></i></a><a data-toggle='tooltip' href='javascript:void(0)' title='Hapus Data' onclick='ShowConfirm(".$field->Id.")' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></center>";
+
+			$btntb = "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_fakta?Id=".$field->Id."' title='Fakta Integritas' class='btn btn-primary btn-xs'><i class='fa fa-plus'></i></a>";
+			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_formulir?Id=".$field->Id."' title='Formulir Isian Kualifikasi' class='btn btn-warning btn-xs'><i class='fa fa-plus'></i></a>";
+			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_da?Id=".$field->Id."' title='Data Administrasi' class='btn btn-primary btn-xs'><i class='fa fa-plus'></i></a>";
+			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_lh?Id=".$field->Id."' title='Landasan Hukum Pendirian Perusahaan ' class='btn btn-warning btn-xs'><i class='fa fa-plus'></i></a>";
+
+
+            $row[] = "<center><span class='btn-group'>".$btntb."<a data-toggle='tooltip' href='".base_url()."pl_penawaran/edit?Id=".$field->Id."' title='Ubah Data' class='btn btn-info btn-xs'><i class='fa fa-edit'></i></a><a data-toggle='tooltip' href='javascript:void(0)' title='Hapus Data' onclick='ShowConfirm(".$field->Id.")' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></center>";
             $data[] = $row;
         }
  
@@ -84,6 +91,144 @@ class Pl_penawaran extends CI_Controller {
 		$this->load->view('_template/footer');
 	
 	}
+
+	public function form_fakta(){
+		$Id = $this->input->get("Id");
+		$data['data'] = $this->m->detail_fakta($Id);
+		$data['data']['Id'] = $Id;
+		$this->load->view('_template/header');
+		$this->load->view('_template/sidebar');
+		$this->load->view('pl_penawaran/form_fakta',$data);
+		$this->load->view('_template/footer');
+	}
+
+	public function update_fakta(){
+		$Id = $this->input->post('Id');
+		$result['Nama'] = $this->input->post('Nama');
+		$result['NoId'] = $this->input->post('NoId');
+		$result['Jabatan'] = $this->input->post('Jabatan');
+		$result['an'] = $this->input->post('an');
+		$result['Perihal'] = $this->input->post('Perihal');
+		$result['TglSurat'] = $this->input->post('TglSurat');
+		$data['fakta_integritas'] = json_encode($result);
+		try {
+			$this->m->update_data($Id,$data);
+			$msg['status'] = TRUE;
+			$msg['pesan'] = "Data Fakta Integritas bersahil disimpan!";
+			echo json_encode($msg);
+		} catch (Exception $e) {
+			$msg['status'] = FALSE;
+			$msg['pesan'] = "Data gagal trupdate!";
+			echo json_encode($msg);
+		}
+		
+	}
+
+	public function form_formulir(){
+		$Id = $this->input->get("Id");
+		$data['data'] = $this->m->detail_formulir($Id);
+		$data['data']['Id'] = $Id;
+		$this->load->view('_template/header');
+		$this->load->view('_template/sidebar');
+		$this->load->view('pl_penawaran/form_formulir',$data);
+		$this->load->view('_template/footer');
+	}
+
+	public function update_formulir(){
+		$Id = $this->input->post('Id');
+		$result['Nama'] = $this->input->post('Nama');
+		$result['NoId'] = $this->input->post('NoId');
+		$result['Jabatan'] = $this->input->post('Jabatan');
+		$result['an'] = $this->input->post('an');
+		$result['Alamat'] = $this->input->post('Alamat');
+		$result['NoTelp'] = $this->input->post('NoTelp');
+		$result['Email'] = $this->input->post('Email');
+		$result['Pernyataan'] = $this->input->post('Pernyataan');
+		$data['formulir_isian'] = json_encode($result);
+		try {
+			$this->m->update_data($Id,$data);
+			$msg['status'] = TRUE;
+			$msg['pesan'] = "Data Formulir Isian Kualifikasi  bersahil disimpan!";
+			echo json_encode($msg);
+		} catch (Exception $e) {
+			$msg['status'] = FALSE;
+			$msg['pesan'] = "Data gagal trupdate!";
+			echo json_encode($msg);
+		}
+		
+	}
+
+
+	public function form_da(){
+		$Id = $this->input->get("Id");
+		$data['data'] = $this->m->detail_da($Id);
+		$data['data']['Id'] = $Id;
+		$this->load->view('_template/header');
+		$this->load->view('_template/sidebar');
+		$this->load->view('pl_penawaran/form_da',$data);
+		$this->load->view('_template/footer');
+	}
+
+	public function update_da(){
+		$Id = $this->input->post('Id');
+		$result['Nama'] = $this->input->post('Nama');
+		$result['Status'] = $this->input->post('Status');
+		$result['AlamatPusat'] = $this->input->post('AlamatPusat');
+		$result['NoTelpPusat'] = $this->input->post('NoTelpPusat');
+		$result['FaxPusat'] = $this->input->post('FaxPusat');
+		$result['EmailPusat'] = $this->input->post('EmailPusat');
+		$result['AlamatCabang'] = $this->input->post('AlamatCabang');
+		$result['NoTelpCabang'] = $this->input->post('NoTelpCabang');
+		$result['FaxCabang'] = $this->input->post('FaxCabang');
+		$result['EmailCabang'] = $this->input->post('EmailCabang');
+		$data['data_administrasi'] = json_encode($result);
+		try {
+			$this->m->update_data($Id,$data);
+			$msg['status'] = TRUE;
+			$msg['pesan'] = "Data Data Administrasi  bersahil disimpan!";
+			echo json_encode($msg);
+		} catch (Exception $e) {
+			$msg['status'] = FALSE;
+			$msg['pesan'] = "Data gagal trupdate!";
+			echo json_encode($msg);
+		}
+		
+	}
+
+
+	public function form_lh(){
+		$Id = $this->input->get("Id");
+		$data['data'] = $this->m->detail_lh($Id);
+		$data['data']['Id'] = $Id;
+		$this->load->view('_template/header');
+		$this->load->view('_template/sidebar');
+		$this->load->view('pl_penawaran/form_lh',$data);
+		$this->load->view('_template/footer');
+	}
+
+	public function update_lh(){
+		$Id = $this->input->post('Id');
+		$result['Nomor'] = $this->input->post('Nomor');
+		$result['Tanggal'] = $this->input->post('Tanggal');
+		$result['Nama'] = $this->input->post('Nama');
+		$result['NoPengesahaan'] = $this->input->post('NoPengesahaan');
+		$result['NomorPerubahan'] = $this->input->post('NomorPerubahan');
+		$result['TanggalPerubahan'] = $this->input->post('TanggalPerubahan');
+		$result['NamaPerubahan'] = $this->input->post('NamaPerubahan');
+		$data['landasan_hukum'] = json_encode($result);
+		try {
+			$this->m->update_data($Id,$data);
+			$msg['status'] = TRUE;
+			$msg['pesan'] = "Data Landasan Hukum Pendirian Perusahaan  bersahil disimpan!";
+			echo json_encode($msg);
+		} catch (Exception $e) {
+			$msg['status'] = FALSE;
+			$msg['pesan'] = "Data gagal trupdate!";
+			echo json_encode($msg);
+		}
+		
+	}
+
 
 	public function edit()
 	{	
