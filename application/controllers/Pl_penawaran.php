@@ -41,6 +41,7 @@ class Pl_penawaran extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('M_Login','ml');
 		$this->load->model('M_Pl_penawaran','m');
 		$this->load->library('MyLib');
@@ -67,6 +68,7 @@ class Pl_penawaran extends CI_Controller {
 			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_formulir?Id=".$field->Id."' title='Formulir Isian Kualifikasi' class='btn btn-warning btn-xs'><i class='fa fa-plus'></i></a>";
 			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_da?Id=".$field->Id."' title='Data Administrasi' class='btn btn-primary btn-xs'><i class='fa fa-plus'></i></a>";
 			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_lh?Id=".$field->Id."' title='Landasan Hukum Pendirian Perusahaan ' class='btn btn-warning btn-xs'><i class='fa fa-plus'></i></a>";
+			$btntb .= "<a data-toggle='tooltip' href='".base_url()."pl_penawaran/form_pbu?Id=".$field->Id."' title='Pengurus Badan Usaha' class='btn btn-success btn-xs'><i class='fa fa-plus'></i></a>";
 
 
             $row[] = "<center><span class='btn-group'>".$btntb."<a data-toggle='tooltip' href='".base_url()."pl_penawaran/edit?Id=".$field->Id."' title='Ubah Data' class='btn btn-info btn-xs'><i class='fa fa-edit'></i></a><a data-toggle='tooltip' href='javascript:void(0)' title='Hapus Data' onclick='ShowConfirm(".$field->Id.")' class='btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a></span></center>";
@@ -226,9 +228,78 @@ class Pl_penawaran extends CI_Controller {
 			$msg['pesan'] = "Data gagal trupdate!";
 			echo json_encode($msg);
 		}
-		
 	}
 
+	public function form_pbu(){
+		$Id = $this->input->get("Id");
+		$data['data']['Id'] = $Id;
+		$data['iData'] = $idata = $this->m->detail_pbu($Id);
+		$this->load->view('_template/header');
+		$this->load->view('_template/sidebar');
+		$this->load->view('pl_penawaran/form_pbu',$data);
+		$this->load->view('_template/footer');
+	}
+
+	public function hapus_item_pbu(){
+		$Id = $this->input->get("Id");
+		$Key = $this->input->get("Key");
+		$idata = $this->m->detail_pbu($Id);
+		unset($idata[$Key]);
+		$data['pengurus_badan'] = json_encode($idata);
+		$this->m->update_data($Id,$data);
+		redirect("pl_penawaran/form_pbu?Id=".$Id);
+	}
+
+	public function coba(){
+		$idata = $this->m->detail_pbu(4);
+		unset($idata[1]);
+		echo "<pre>";
+		print_r($idata);
+	}
+
+	public function update_pbu_opsi($old,$new){
+		$idta = array();
+		foreach($old as $key => $data){
+			$idta[] = $data;
+		}
+		array_push($idta,$new);
+		return $idta;
+	}
+
+	public function update_pbu(){
+		$Id = $this->input->post('Id');
+		$bc = array();
+		$idata = $this->m->detail_pbu($Id);
+		if(count($idata) > 0){
+			$newData = array(
+				"Nama" => $this->input->post("Nama"),
+				"NoId" => $this->input->post("NoId"),
+				"Jabatan" => $this->input->post("Jabatan")
+			);
+			$bc = $this->update_pbu_opsi($idata,$newData);
+
+		}else{
+			$newData = array(
+				"Nama" => $this->input->post("Nama"),
+				"NoId" => $this->input->post("NoId"),
+				"Jabatan" => $this->input->post("Jabatan")
+			);
+			array_push($bc,$newData);
+		}
+		$data['pengurus_badan'] = json_encode($bc);
+		try {
+			$this->m->update_data($Id,$data);
+			$msg['status'] = TRUE;
+			$msg['pesan'] = "Data Landasan Hukum Pendirian Perusahaan  bersahil disimpan!";
+			$this->session->unset_userdata('data_pbu');
+			echo json_encode($msg);
+		} catch (Exception $e) {
+			$msg['status'] = FALSE;
+			$msg['pesan'] = "Data gagal trupdate!";
+			$this->session->unset_userdata('data_pbu');
+			echo json_encode($msg);
+		}
+	}
 
 	public function edit()
 	{	

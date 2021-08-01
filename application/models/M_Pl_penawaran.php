@@ -150,7 +150,6 @@ class M_Pl_penawaran extends CI_Model {
             $result['NamaPerubahan'] = "";
         }
         return $result;
-        
     }
 
 
@@ -185,6 +184,20 @@ class M_Pl_penawaran extends CI_Model {
         return $result;
         
     }
+
+    function detail_pbu($Id){
+        $this->db->select("pengurus_badan");
+        $this->db->where("Id",$Id);
+        $res = $this->db->get("ppk_pl_penawaran")->row();
+        if($res->pengurus_badan  != ""){
+            $result = json_decode($res->pengurus_badan ,true);
+        }else{
+           $result = array();
+        }
+        return $result;
+    }
+
+   
 
     function save_data($data){
         $this->db->insert("ppk_pl_penawaran", $data);
